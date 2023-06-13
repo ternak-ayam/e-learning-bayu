@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 // guest
 Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
 });
 
 // login register
-Route::get('/login', function () {
-    return view('auth.login');
-});
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
 Route::get('/register', function () {
     return view('auth.register');
 });
@@ -76,9 +76,6 @@ Route::prefix('elearning')->group(function () {
         Route::get('/', function () {
             return view('dashboardUser.eLearning.materi.index');
         });
-        Route::get('/upload-laporan', function () {
-            return view('dashboardUser.eLearning.materi.uploadLaporan');
-        });
     });
     Route::prefix('tugas')->group(function () {
         Route::get('/', function () {
@@ -94,6 +91,43 @@ Route::prefix('elearning')->group(function () {
         });
         Route::get('/nama-quiz', function () {
             return view('dashboardUser.eLearning.absensi.detailQuiz');
+        });
+    });
+});
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::prefix('dashboard-admin')->group(function () {
+        Route::get('/', function () {
+            return view('dashboardAdmin.dashboard.index');
+        });
+    });
+    Route::prefix('absensi')->group(function () {
+        Route::get('/', function () {
+            return view('dashboardAdmin.absensi.index');
+        });
+        Route::get('/tambah-absensi', function () {
+            return view('dashboardAdmin.absensi.create');
+        });
+        Route::get('/daftar-absensi/2', function () {
+            return view('dashboardAdmin.absensi.daftarAbsensi');
+        });
+    });
+    Route::prefix('materi')->group(function () {
+        Route::get('/', function () {
+            return view('dashboardAdmin.materi.index');
+        });
+        Route::get('/upload-materi', function () {
+            return view('dashboardAdmin.materi.create');
+        });
+    });
+    Route::prefix('tugas')->group(function () {
+        Route::get('/', function () {
+            return view('dashboardAdmin.tugas.index');
+        });
+        Route::get('/upload-tugas', function () {
+            return view('dashboardAdmin.tugas.create');
         });
     });
 });
