@@ -9,13 +9,13 @@
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="w-full p-4">
 
-                    <form>
+                    <form method="POST" action="{{route('add.pertemuan')}}">
+                        @csrf
                         <div class="mb-6">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul
                                 Absensi</label>
-                            <input type="email" id="email"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="name@flowbite.com" required>
+                            <input type="text" id="email" name="judul"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         </div>
                         <div class="flex flex-col md:flex-row gap-4">
                             <button type="submit"
@@ -26,11 +26,8 @@
                             </a>
                         </div>
                     </form>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection

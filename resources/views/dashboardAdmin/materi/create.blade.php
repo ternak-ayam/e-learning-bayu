@@ -11,8 +11,12 @@
 
 
                 <div class="p-4">
-                    <form action="" method="" enctype="multipart/form-data">
+                    <form action="{{route('store.materi')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="pb-2">
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
+                            <input type="text" name="deskripsi" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Deskripsi" required="">
+                        </div>
                         <div class="flex items-center justify-center w-full">
                             <label for="dropzone-file"
                                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -37,7 +41,7 @@
                                 <div id="name"
                                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                                 </div>
-                                <input id="dropzone-file" type="file" class="hidden">
+                                <input id="dropzone-file" type="file" name="file" class="hidden">
                             </label>
                         </div>
                         <div class="flex m-4 justify-center items-center gap-4">

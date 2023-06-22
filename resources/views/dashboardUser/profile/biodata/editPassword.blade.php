@@ -31,25 +31,26 @@
                     <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         Edit Password</h5>
                     <div class="p-4">
-                        <form>
+                        <form method="POST" action="{{route('user.update.password', ['user' => Auth::user()->id])}}">
+                            @csrf
                             <div class="mb-6">
                                 <label for="namaLengkap"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Lama</label>
-                                <input type="password" id="namaLengkap" name="namaLengkap"
+                                <input type="password" id="namaLengkap" name="current_password"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="*******" required>
                             </div>
                             <div class="mb-6">
                                 <label for="tempatLahir"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
-                                <input type="password" id="tempatLahir" name="tempatLahir"
+                                <input type="password" id="tempatLahir" name="new_password"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="*******" required>
                             </div>
                             <div class="mb-6">
                                 <label for="tanggalLahir"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konfirmasi Password</label>
-                                <input type="password" id="tanggalLahir" name="tanggalLahir"
+                                <input type="password" id="tanggalLahir" name="new_password_confirmation"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="*******" required>
                             </div>

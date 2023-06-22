@@ -19,24 +19,14 @@
 
                         <h2 class="mb-2 text-lg font-light text-gray-900 dark:text-white">Judul Absensi</h2>
                         <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
-                            <li class="flex items-center">
-                                <a href="{{ url('/admin/absensi/daftar-absensi/2') }}" class="flex flex-row items-center">
-                                    <i class="fa-regular fa-note-sticky mr-2"></i>
-                                    Pertemuan 1
-                                </a>
-                            </li>
-                            <li class="flex items-center">
-                                <a href="{{ url('/admin/absensi/daftar-absensi/2') }}" class="flex flex-row items-center">
-                                    <i class="fa-regular fa-note-sticky mr-2"></i>
-                                    Pertemuan 2
-                                </a>
-                            </li>
-                            <li class="flex items-center">
-                                <a href="{{ url('/admin/absensi/daftar-absensi/2') }}" class="flex flex-row items-center">
-                                    <i class="fa-regular fa-note-sticky mr-2"></i>
-                                    Pertemuan 3
-                                </a>
-                            </li>
+                            @foreach ($pertemuans as $pertemuan)
+                                <li class="flex items-center">
+                                    <a href="{{ url('/admin/absensi/daftar-absensi/' . $pertemuan->id) }}" class="flex flex-row items-center">
+                                        <i class="fa-regular fa-note-sticky mr-2"></i>
+                                        {{$pertemuan->judul}}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

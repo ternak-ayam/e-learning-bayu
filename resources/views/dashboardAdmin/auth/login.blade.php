@@ -18,9 +18,9 @@
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <img class="w-28 mx-auto" src="{{ asset('/img/logo-login.png') }}" alt="logo"> 
                     <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        SISTEM INFORMASI OJT
+                        SISTEM INFORMASI OJT ADMIN LOGIN
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="{{route('login')}}" method="POST">
+                    <form class="space-y-4 md:space-y-6" action="{{route('admin.login')}}" method="POST">
                         @csrf
                         <div>
                             <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
