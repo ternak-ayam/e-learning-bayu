@@ -6,7 +6,7 @@
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="">
                     <div class="flex flex-col p-10">
-                        <img src="{{ asset('/img/users.png') }}" class="w-48 mx-auto bordered rounded-full" alt="">
+                        <img src="{{$user->image ? asset('storage/materi/' . $user->image) : asset('/img/users.png') }}" class="w-48 mx-auto bordered rounded-full" alt="">
                         <h5 class="mb-2 mt-2  text-center text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                            {{$user->name}}</h5>
                         <h5
@@ -109,7 +109,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
                                 <input type="file"  id="noTelepon" name="foto"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required placeholder="0865161651">
+                                    placeholder="0865161651">
                             </div>
                              @error('foto')
                                     <span class="text-red-700 text-sm" style="color:red">

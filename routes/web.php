@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\absensiController;
 use App\Http\Controllers\User\materiController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,9 +48,8 @@ Route::prefix('profile')->group(function () {
        
         Route::get('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'editBiodata'])->name('edit.biodata');
         Route::put('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'updateBiodata'])->name('update.biodata');
-        Route::get('/edit-password', function () {
-            return view('dashboardUser.profile.biodata.editPassword');
-        });
+        Route::get('/edit-password/{user}', [App\Http\Controllers\User\ProfileController::class, 'editPassword'])->name('user.edit.password');
+      
         Route::post('/edit-password/{user}', [App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('user.update.password');
     });
     Route::prefix('daftar-ojt')->group(function () {
@@ -87,9 +87,8 @@ Route::prefix('elearning')->group(function () {
         Route::get('/download/all/file', [materiController::class, 'downloadAllFile'])->name('download.all.file');
     });
     Route::prefix('tugas')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardUser.eLearning.tugas.index');
-        });
+        Route::get('/', [App\Http\Controllers\User\TugasController::class, 'index'])->name('user.tugas');
+        
         Route::get('/nama-tugas', function () {
             return view('dashboardUser.eLearning.tugas.detailTugas');
         });
@@ -110,7 +109,7 @@ Route::get('admin/dashboard', function () {
 
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::prefix('dashboard-admin')->group(function () {
         Route::get('/', function () {
             return view('dashboardAdmin.dashboard.index');
@@ -119,7 +118,6 @@ Route::prefix('admin')->group(function () {
     Route::prefix('absensi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('absensi.index');
         
-
         Route::post('/pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addPertemuan'])->name('add.pertemuan');
 
         Route::get('/tambah-absensi', function () {
@@ -130,16 +128,24 @@ Route::prefix('admin')->group(function () {
         });
     });
     Route::prefix('materi')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('materi.index');
-        Route::get('/upload-materi', [\App\Http\Controllers\Admin\materiController::class , 'addMateri']);
-        Route::post('/upload-materi', [\App\Http\Controllers\Admin\materiController::class , 'storeMateri'])->name('store.materi');
+        Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('admin.materi.index');
+        Route::get('/upload-materi/{id?}', [\App\Http\Controllers\Admin\materiController::class , 'addMateri'])->name('admin.view.add.materi');
+        Route::post('/upload-materi', [\App\Http\Controllers\Admin\materiController::class , 'storeMateri'])->name('admin.store.materi');
+        Route::put('/update-materi/{id}', [App\Http\Controllers\Admin\materiController::class, 'updateMateri'])->name('admin.update.materi');
+        Route::get('/delete-materi/{id}', [App\Http\Controllers\Admin\materiController::class, 'deleteMateri'])->name('admin.delete.materi');
     });
     Route::prefix('tugas')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardAdmin.tugas.index');
-        });
-        Route::get('/upload-tugas', function () {
-            return view('dashboardAdmin.tugas.create');
-        });
+        Route::get('/', [App\Http\Controllers\Admin\TugasController::class, 'index'])->name('admin.tugas.index');
+        Route::get('/upload-tugas/{id?}', [App\Http\Controllers\Admin\TugasController::class, 'viewAddTugas'])->name('admin.view.add.tugas');
+        Route::post('/upload-tugas', [App\Http\Controllers\Admin\TugasController::class, 'uploadTugas'])->name('admin.upload.tugas');
+        Route::put('/update-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'updateTugas'])->name('admin.update.tugas');
+        Route::get('/delete-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'deleteTugas'])->name('admin.delete.tugas');
     });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/addUser', [App\Http\Controllers\Admin\UserController::class, 'viewAddUser'])->name('admin.view.add.user');
+        Route::post('/addUser', [App\Http\Controllers\Admin\UserController::class, 'AddUser'])->name('admin.add.user');
+    });
+
 });

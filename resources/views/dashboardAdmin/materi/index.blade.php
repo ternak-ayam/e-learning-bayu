@@ -14,7 +14,7 @@
                         <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
                             @foreach ($materis as $materi)
                                 <li class="flex items-center">
-                                    <a href="{{asset('storage/materi/' .  $materi->file)}}" download class="flex flex-row items-center ml-2">
+                                    <a href="{{asset('storage/materi/' .  $materi->file)}}" target="blank" class="flex flex-row items-center ml-2">
                                         <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"
@@ -24,6 +24,10 @@
                                         {{$materi->deskripsi}}
                                     </a>
                                 </li>
+                                 <div class="flex gap-4">
+                                     <a class="text-green-500" href="{{route('admin.view.add.materi', ['id' => $materi->id])}}">Edit</a>
+                                     <a class="text-red-500" href="{{route('admin.delete.materi' ,['id' => $materi->id])}}">Hapus</a>
+                                </div>
                             @endforeach
                         </ul>
                         <a href="{{ url('/admin/materi/upload-materi') }}">

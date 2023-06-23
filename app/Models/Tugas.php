@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Materi extends Model
+class Tugas extends Model
 {
     use HasFactory;
-        protected $fillable = [
+      protected $fillable = [
         'deskripsi',
         'file'
     ];
-
 }

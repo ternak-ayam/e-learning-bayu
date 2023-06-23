@@ -5,19 +5,23 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     public function index(){
-         return view('dashboardUser.profile.biodata.index');
+        // dd(User::find(Auth::user()->id));
+         return view('dashboardUser.profile.biodata.index', [
+              'user' => User::find(Auth::user()->id)
+         ]);
     }
     
 
     public function editBiodata($id){
         return view('dashboardUser.profile.biodata.editBiodata', [
-            'user' => User::find($id)->first()
+            'user' => User::find($id)
         ]);
     }
 
@@ -63,6 +67,12 @@ class ProfileController extends Controller
            return redirect()->route('profile.biodata.index');
         }
     
+    }
+
+    public function editPassword($user){
+          return view('dashboardUser.profile.biodata.editPassword',[
+            'user' => User::find($user)->first()
+          ]);
     }
 
     public function updatePassword(User $user, Request $request){

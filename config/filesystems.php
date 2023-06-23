@@ -29,7 +29,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -45,6 +44,13 @@ return [
         'public/materi' => [
         'driver' => 'local',
         'root' => storage_path('app/public/materi'),
+        'url' => env('APP_URL') . '/storage/materi',
+        'visibility' => 'public',
+        ],
+        
+        'public/tugas' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/tugas'),
         'url' => env('APP_URL') . '/storage/materi',
         'visibility' => 'public',
         ],

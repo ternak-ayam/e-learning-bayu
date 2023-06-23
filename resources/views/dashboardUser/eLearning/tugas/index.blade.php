@@ -12,26 +12,15 @@
                         
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
-
                         {{-- <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Materi</h2> --}}
                         <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
                             <li class="flex items-center">
-                                <a href="{{ url('/elearning/tugas/nama-tugas') }}" class="flex flex-row items-center">
-                                    <i class="fa-regular fa-note-sticky mr-2"></i>
-                                    Tugas Menyelamatkan MIMI PERI
-                                </a>
-                            </li>
-                            <li class="flex items-center">
-                                <a href="{{ url('/elearning/tugas/nama-tugas') }}" class="flex flex-row items-center">
-                                    <i class="fa-regular fa-note-sticky mr-2"></i>
-                                    Tugas Menghancurkan isi hati wanita
-                                </a>
-                            </li>
-                            <li class="flex items-center">
-                                <a href="{{ url('/elearning/tugas/nama-tugas') }}" class="flex flex-row items-center">
-                                    <i class="fa-regular fa-note-sticky mr-2"></i>
-                                   Tugas membuat anak mermaid
-                                </a>
+                                @foreach ($tugass as $tugas)
+                                    <a href="{{ asset('storage/tugas/' . $tugas->file) }}" target="blank" class="flex flex-row items-center">
+                                        <i class="fa-regular fa-note-sticky mr-2"></i>
+                                        Tugas Menyelamatkan MIMI PERI
+                                    </a>
+                                @endforeach
                             </li>
                         </ul>
                     </div>
