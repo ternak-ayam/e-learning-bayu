@@ -26,13 +26,17 @@
                                         {{$pertemuan->judul}}
                                     </a>
                                 </li>
+                                 <div class="flex gap-4">
+                                     <a class="text-green-500" href="{{route('admin.view.add.absensi', ['id' => $pertemuan->id])}}">Edit</a>
+                                     <a class="text-red-500" href="{{route('admin.delete.absensi' ,['id' => $pertemuan->id])}}">Hapus</a>
+                                     <a class="text-yellow-500" href="{{route('admin.delete.materi' ,['id' => $pertemuan->id])}}">Detail</a>
+                                </div>
                             @endforeach
+
                         </ul>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection

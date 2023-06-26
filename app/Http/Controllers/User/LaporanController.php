@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Laporan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -58,6 +59,12 @@ class LaporanController extends Controller
             return redirect()->route('admin.laporan.index');
         }
 
+    }
+
+    public function daftarLaporan(){
+         return view('dashboardUser.dokumen.pencarianLaporan.index',[
+            'laporans' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get()
+         ]);
     }
 
 

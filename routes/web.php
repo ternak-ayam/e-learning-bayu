@@ -29,9 +29,8 @@ Route::get('/register', function () {
 });
 
 // dashboard user
-Route::get('/dashboard', function () {
-    return view('dashboardUser.dashboard');
-})->middleware('auth');
+Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth');
+ 
 
 Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm']);
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
@@ -39,8 +38,6 @@ Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logou
 
 Route::get('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'showLoginForm']);
 Route::post('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'login'])->name('admin.login');
-
-
 
 Route::prefix('profile')->group(function () {
     Route::prefix('biodata')->group(function () {
@@ -55,19 +52,14 @@ Route::prefix('profile')->group(function () {
     });
 });
 
-
-
 Route::prefix('dokumen')->group(function () {
     Route::prefix('pengumpulan-laporan')->group(function () {
         Route::get('/', [App\Http\Controllers\User\LaporanController::class , 'index'])->name('user.laporan.index');
         Route::post('/upload-laporan', [App\Http\Controllers\User\LaporanController::class , 'uploadLaporan'])->name('user.laporan.upload');
         Route::put('/update-laporan/{id}', [App\Http\Controllers\User\LaporanController::class , 'updateLaporan'])->name('user.laporan.update');
-      
     });
     Route::prefix('pencarian-laporan')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardUser.dokumen.pencarianLaporan.index');
-        });
+        Route::get('/', [App\Http\Controllers\User\LaporanController::class , 'daftarLaporan'])->name('user.daftar.laporan');
     });
 });
 
@@ -107,13 +99,12 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         });
     });
     Route::prefix('absensi')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('absensi.index');
-        
-        Route::post('/pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addPertemuan'])->name('add.pertemuan');
-
-        Route::get('/tambah-absensi', function () {
-            return view('dashboardAdmin.absensi.create');
-        });
+        Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('admin.absensi.index');
+        Route::post('/add-pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addAbsensi'])->name('admin.add.absensi');
+        Route::put('/update-pertemuan/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updateAbsensi'])->name('admin.update.absensi');
+        Route::get('/tambah-absensi/{id?}', [\App\Http\Controllers\Admin\absensiController::class, 'createAbsensi'])->name('admin.view.add.absensi');
+        Route::get('/delete-absensi/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'deleteAbsensi'])->name('admin.delete.absensi');
+     
         Route::get('/daftar-absensi/2', function () {
             return view('dashboardAdmin.absensi.daftarAbsensi');
         });

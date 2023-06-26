@@ -8,8 +8,7 @@
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="w-auto m-4 ml-auto">
-                    <form method="POST" action="#">
-                        @csrf
+                    <form >
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div class="relative">
@@ -20,7 +19,7 @@
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
+                            <input type="search" name="query" id="default-search" value="{{ Request::input('query') ?? ''}}"
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search..." required>
                             <button type="submit"
@@ -48,58 +47,26 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($laporans as $laporan)
                                 <tr
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
+                                        {{$loop->iteration}}
                                     </th>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Made Smirnoff
+                                        {{$laporan->name}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        Sekolah Tinggi Suzuran
+                                        {{$laporan->ojt->sekolah}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        Ilmu Kebal Terhadap Serangan Netizen
+                                        {{$laporan->laporan->judul}}
                                     </td>
                                 </tr>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        2
-                                    </th>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Komang Rapael
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Universitas Muaythai
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Metode Pemburu Selang K ang An terhadap Wanita yang Abusive
-
-                                    </td>
-                                </tr>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        3
-                                    </th>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Zneider Ahmad
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Institute Teknologi Time Travel
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Metode Renkarnasi Menjadi Raja Iblis
-                                    </td>
-                                </tr>
+                                @endforeach
+                              
                             </tbody>
                         </table>
                     </div>

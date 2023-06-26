@@ -24,7 +24,7 @@
             <div class="w-full">
                 <div 
                     class="mt-10 block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat daatang Budi
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat daatang {{Auth::user()->name}}
                     </h5>
                     <p class="font-normal text-gray-700 dark:text-gray-400">E-Leraning AirNav Denpasar merupakan sebuah
                         sistem informasi untuk mendukung proses
@@ -43,7 +43,7 @@
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Mahasiswa</h5>
                     </a>
-                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">30</p>
+                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">{{$user}}</p>
                 </div>
                 <div
                     class=" w-full bg p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -53,7 +53,7 @@
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Materi</h5>
                     </a>
-                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">12</p>
+                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">{{$materi}}</p>
                 </div>
                 <div
                     class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -61,9 +61,9 @@
                         <i class="fa-solid fa-pen-to-square fa-xl"></i>
                     </div>
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Quiz</h5>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Tugas</h5>
                     </a>
-                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">5</p>
+                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">{{$tugas}}</p>
                 </div>
 
             </div>
@@ -82,12 +82,12 @@
                                     <i class="fa-solid fa-file-pdf fa-xl"></i>
                                 </div>
                                 <a href="#">
-                                    <p class="mb-3 font-normal text-xl  text-gray-500 dark:text-gray-400">Penjelasan DVOR
+                                    <p class="mb-3 font-normal text-xl  text-gray-500 dark:text-gray-400">{{$latest_materi ? $latest_materi->deskripsi : 'belum ada materi'}}
                                     </p>
                                 </a>
 
                             </div>
-                            <a href="">
+                            <a href="{{$latest_materi ? asset('storage/materi/' . $latest_materi->file) : '#'}}" target="blank">
                                 <button type="submit"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Lihat</button>
                             </a>
@@ -96,7 +96,7 @@
                     <div
                         class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Quiz</h5>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Tugas</h5>
                         <hr class="mb-4">
                         <div class="flex flex-row justify-between">
                             <div class="flex gap-4">
@@ -104,21 +104,18 @@
                                     <i class="fa-solid fa-pen-to-square fa-xl"></i>
                                 </div>
                                 <a href="#">
-                                    <p class="mb-3 font-normal text-xl text-gray-500 dark:text-gray-400">Quiz 1 DVOR</p>
+                                    <p class="mb-3 font-normal text-xl text-gray-500 dark:text-gray-400">{{$latest_tugas ? $latest_tugas->deskripsi : 'belum ada tugas'}}</p>
                                 </a>
 
                             </div>
-                            <a href="">
+                            <a href="{{$latest_tugas ?  asset('storage/tugas/' . $latest_tugas->file) : '#'}}">
                                 <button type="submit"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Lihat</button>
                             </a>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection

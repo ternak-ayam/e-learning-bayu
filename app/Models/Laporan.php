@@ -13,4 +13,8 @@ class Laporan extends Model
         'judul',
         'file'
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User', 'id_user');
+    }
 }
