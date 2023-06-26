@@ -63,7 +63,7 @@
                                 <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                     Pembimbing
                                 </h5>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">Denny Rahmad A
+                                <p class="font-normal text-gray-700 dark:text-gray-400">{{$user->ojt->pembimbing ? $user->ojt->pembimbing : ''}}
                             </div>
                         </div>
                         <div class="flex">

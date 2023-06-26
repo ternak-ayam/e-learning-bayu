@@ -56,4 +56,9 @@ class User extends Authenticatable
             return 'admin';
         }
     }
+
+    public function ojt()
+    {
+        return $this->hasOne('App\Models\Ojt', 'user_id');
+    }
 }

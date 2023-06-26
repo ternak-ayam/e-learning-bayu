@@ -8,8 +8,7 @@
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="w-auto md:w-96 m-4 ml-auto">
-                    <form method="POST" action="#">
-                        @csrf
+                    <form >
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div class="relative">
@@ -20,9 +19,9 @@
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
+                            <input name="query" type="search" id="default-search"
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search..." required>
+                                placeholder="Search..." value="{{ Request::input('query') ?? ''}}">
                             <button type="submit"
                                 class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
@@ -49,6 +48,9 @@
                                      <th scope="col" class="px-6 py-3">
                                         phone
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,6 +70,10 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$user->phone}}
+                                    </td>
+                                     <td class="px-6 py-4 flex gap-2 flex-wrap">
+                                        <a href="{{route('admin.view.add.user', ['id' => $user->id])}}" class="p-2 rounded bg-green-400"><i class="fa-solid fa-pen text-white"></i></a>
+                                        <a href="{{route('admin.delete.user' , ['id' => $user->id])}}" class="p-2 rounded bg-red-400"><i class="fas fa-trash text-white"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

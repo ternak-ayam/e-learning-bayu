@@ -47,11 +47,18 @@ return [
         'url' => env('APP_URL') . '/storage/materi',
         'visibility' => 'public',
         ],
+
+        'public/laporan' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/laporan'),
+        'url' => env('APP_URL') . '/storage/laporan',
+        'visibility' => 'public',
+        ],
         
         'public/tugas' => [
         'driver' => 'local',
         'root' => storage_path('app/public/tugas'),
-        'url' => env('APP_URL') . '/storage/materi',
+        'url' => env('APP_URL') . '/storage/tugas',
         'visibility' => 'public',
         ],
 

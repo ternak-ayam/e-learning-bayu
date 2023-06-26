@@ -43,18 +43,13 @@
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
-                        <a href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                        <form id="signOut" class="hidden" method="POST" action="{{route('logout')}}">@csrf </form>
+                        <form id="signOut" class="hidden" method="POST" action="{{route('logout')}}">@csrf <button type="submit">logout</button></form>
                         <a onclick="document.getElementById('signOut').submit()"
                             class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
                             out</a>
                     </li>
                 </ul>
             </div>
-
         </div>
 </nav>
 {{-- end of navbar --}}

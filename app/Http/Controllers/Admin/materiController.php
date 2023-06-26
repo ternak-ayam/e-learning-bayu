@@ -69,7 +69,7 @@ class materiController extends Controller
 
     public function deleteMateri($id){
         $materi = Materi::findOrFail($id);
-        if(Storage::disk('public/materigit')->delete($materi->file)){
+        if(Storage::disk('public/materi')->delete($materi->file)){
             Materi::find($id)->delete();
             return redirect()->route('admin.materi.index');
         };

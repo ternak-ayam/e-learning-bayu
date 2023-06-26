@@ -45,17 +45,13 @@ Route::post('admin/login', [App\Http\Controllers\Admin\Auth\loginController::cla
 Route::prefix('profile')->group(function () {
     Route::prefix('biodata')->group(function () {
         Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.biodata.index');
-       
         Route::get('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'editBiodata'])->name('edit.biodata');
         Route::put('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'updateBiodata'])->name('update.biodata');
         Route::get('/edit-password/{user}', [App\Http\Controllers\User\ProfileController::class, 'editPassword'])->name('user.edit.password');
-      
         Route::post('/edit-password/{user}', [App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('user.update.password');
     });
     Route::prefix('daftar-ojt')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardUser.profile.daftarOJT.index');
-        });
+        Route::get('/', [App\Http\Controllers\User\OjtController::class , 'index'])->name('user.ojt.index');
     });
 });
 
@@ -63,15 +59,10 @@ Route::prefix('profile')->group(function () {
 
 Route::prefix('dokumen')->group(function () {
     Route::prefix('pengumpulan-laporan')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardUser.dokumen.pengumpulanLaporan.index');
-        });
-        Route::get('/upload-laporan', function () {
-            return view('dashboardUser.dokumen.pengumpulanLaporan.uploadLaporan');
-        });
-        Route::get('/edit-laporan', function () {
-            return view('dashboardUser.dokumen.pengumpulanLaporan.editLaporan');
-        });
+        Route::get('/', [App\Http\Controllers\User\LaporanController::class , 'index'])->name('user.laporan.index');
+        Route::post('/upload-laporan', [App\Http\Controllers\User\LaporanController::class , 'uploadLaporan'])->name('user.laporan.upload');
+        Route::put('/update-laporan/{id}', [App\Http\Controllers\User\LaporanController::class , 'updateLaporan'])->name('user.laporan.update');
+      
     });
     Route::prefix('pencarian-laporan')->group(function () {
         Route::get('/', function () {
@@ -144,8 +135,10 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::prefix('user')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.user.index');
-        Route::get('/addUser', [App\Http\Controllers\Admin\UserController::class, 'viewAddUser'])->name('admin.view.add.user');
-        Route::post('/addUser', [App\Http\Controllers\Admin\UserController::class, 'AddUser'])->name('admin.add.user');
+        Route::get('/addUser/{id?}', [App\Http\Controllers\Admin\UserController::class, 'viewAddUser'])->name('admin.view.add.user');
+        Route::post('/addUser', [App\Http\Controllers\Admin\UserController::class, 'addUser'])->name('admin.add.user');
+        Route::put('/updateUser/{id}', [App\Http\Controllers\Admin\UserController::class, 'updateUser'])->name('admin.update.user');
+        Route::get('/delete-user/{id}', [App\Http\Controllers\Admin\UserController::class, 'deleteUser'])->name('admin.delete.user');
     });
 
 });
