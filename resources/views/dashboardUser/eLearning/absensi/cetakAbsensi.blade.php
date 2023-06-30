@@ -27,7 +27,7 @@
 <body>
     <table>
         <tr>
-            <td>nama </td>
+            <td>Nama </td>
             <td>:</td>
             <td>{{Auth::user()->name}}</td>
         </tr>
