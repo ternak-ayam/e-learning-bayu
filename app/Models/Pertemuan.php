@@ -11,4 +11,8 @@ class Pertemuan extends Model
     protected $fillable = [
         'judul'
     ];
+
+    public function absensi(){
+        return $this->hasMany('App\Models\Absensi', 'id_pertemuan');
+    }
 }

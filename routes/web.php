@@ -76,35 +76,34 @@ Route::prefix('elearning')->group(function () {
             return view('dashboardUser.eLearning.tugas.detailTugas');
         });
     });
-    Route::prefix('absensi ')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardUser.eLearning.absensi.index');
-        });
+    Route::prefix('absensi')->group(function () {
+        Route::get('/', [App\Http\Controllers\User\AbsensiController::class, 'index'])->name('user.elearning.absensi');
+        Route::get('/cetak-pdf', [App\Http\Controllers\User\AbsensiController::class, 'cetakAbsensi'])->name('user.elearning.absensi.cetak');
+
         Route::get('/nama-quiz', function () {
             return view('dashboardUser.eLearning.absensi.detailQuiz');
         });
     });
 });
 
-Route::get('admin/dashboard', function () {
-            return view('dashboardAdmin.dashboard.index');
-        });
-
-
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::prefix('dashboard-admin')->group(function () {
-        Route::get('/', function () {
-            return view('dashboardAdmin.dashboard.index');
-        });
+        // Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
+        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     });
     Route::prefix('absensi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('admin.absensi.index');
-        Route::post('/add-pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addAbsensi'])->name('admin.add.absensi');
-        Route::put('/update-pertemuan/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updateAbsensi'])->name('admin.update.absensi');
-        Route::get('/tambah-absensi/{id?}', [\App\Http\Controllers\Admin\absensiController::class, 'createAbsensi'])->name('admin.view.add.absensi');
-        Route::get('/delete-absensi/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'deleteAbsensi'])->name('admin.delete.absensi');
-     
+        Route::post('/add-pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addPertemuan'])->name('admin.add.absensi');
+        Route::put('/update-pertemuan/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updatePertemuan'])->name('admin.update.absensi');
+        Route::get('/tambah-pertemuan/{id?}', [\App\Http\Controllers\Admin\absensiController::class, 'createPertemuan'])->name('admin.view.add.absensi');
+        Route::get('/delete-pertemuan/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'deletePertemuan'])->name('admin.delete.absensi');
+
+        Route::get('/tambah-absensi/{id?}', [\App\Http\Controllers\Admin\absensiController::class, 'createAbsensi'])->name('admin.view.add.absensi.user');
+        Route::post('/tambah-absensi', [\App\Http\Controllers\Admin\absensiController::class, 'addAbsensi'])->name('admin.store.absensi.user');
+        Route::get('/update-absensi/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updateAbsensiView'])->name('admin.view.update.absensi.user');
+        Route::put('/update-absensi/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updateAbsensi'])->name('admin.update.absensi.user');
+
         Route::get('/daftar-absensi/2', function () {
             return view('dashboardAdmin.absensi.daftarAbsensi');
         });

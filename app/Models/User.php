@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function laporan(){
         return $this->hasOne('App\Models\Laporan', 'id_user');
     }
+
+    public function absensi(){
+        return $this->hasMany('App\Models\Absensi' , 'id_user');
+    }
 }
