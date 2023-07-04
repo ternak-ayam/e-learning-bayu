@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
+use function PHPUnit\Framework\isEmpty;
+
 class materiController extends Controller
 {
     public function index(){
@@ -19,6 +21,10 @@ class materiController extends Controller
     public function downloadAllFile()
     {
     $files = Materi::select('file')->get()->toArray();
+
+    if(empty($files)){
+        return back();
+    }
 
     $zipFileName = 'files.zip';
     $zipPath = storage_path($zipFileName);

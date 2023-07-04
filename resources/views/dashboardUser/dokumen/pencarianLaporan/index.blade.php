@@ -59,10 +59,10 @@
                                         {{$laporan->name}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{$laporan->ojt->sekolah}}
+                                        {{$laporan->ojt && $laporan->ojt->sekolah ? $laporan->ojt->sekolah : '-'}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{$laporan->laporan->judul}}
+                                        {{$laporan->laporan && $laporan->laporan->judul ? $laporan->laporan->judul : '-'}}
                                     </td>
                                 </tr>
                                 @endforeach

@@ -54,7 +54,7 @@
                             <div class="flex w-full flex-col justify-start items-start">
                                 <h5 class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Kota
                                 </h5>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">{{$user->tempat_lahir ? $user->tempat_lahir : '-' }}</p>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">{{ $user->tempat_lahir ? $user->tempat_lahir : '-' }}</p>
                             </div>
                         </div>
                         <div class="flex mb-10 flex-col md:flex-row w-full justify-center gap-12 p-4">
@@ -63,7 +63,7 @@
                                 <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                     Pembimbing
                                 </h5>
-                                <p class="font-normal text-gray-700 dark:text-gray-400">{{$user->ojt->pembimbing ? $user->ojt->pembimbing : ''}}
+                                <p class="font-normal text-gray-700 dark:text-gray-400">{{$user->ojt && $user->ojt->pembimbing ? $user->ojt->pembimbing : ''}}
                             </div>
                         </div>
                         <div class="flex">

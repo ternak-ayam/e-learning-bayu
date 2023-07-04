@@ -39,7 +39,7 @@ Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logou
 Route::get('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'showLoginForm']);
 Route::post('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'login'])->name('admin.login');
 
-Route::prefix('profile')->group(function () {
+Route::middleware('auth')->prefix('profile')->group(function () {
     Route::prefix('biodata')->group(function () {
         Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.biodata.index');
         Route::get('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'editBiodata'])->name('edit.biodata');
@@ -52,7 +52,7 @@ Route::prefix('profile')->group(function () {
     });
 });
 
-Route::prefix('dokumen')->group(function () {
+Route::prefix('dokumen')->middleware('auth')->group(function () {
     Route::prefix('pengumpulan-laporan')->group(function () {
         Route::get('/', [App\Http\Controllers\User\LaporanController::class , 'index'])->name('user.laporan.index');
         Route::post('/upload-laporan', [App\Http\Controllers\User\LaporanController::class , 'uploadLaporan'])->name('user.laporan.upload');
@@ -64,7 +64,7 @@ Route::prefix('dokumen')->group(function () {
 });
 
 
-Route::prefix('elearning')->group(function () {
+Route::prefix('elearning')->middleware('auth')->group(function () {
     Route::prefix('materi')->group(function () {
         Route::get('/', [materiController::class, 'index'] );
         Route::get('/download/all/file', [materiController::class, 'downloadAllFile'])->name('download.all.file');

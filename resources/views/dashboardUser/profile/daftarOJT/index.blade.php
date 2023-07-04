@@ -66,16 +66,16 @@
                                         {{$user->name}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{$user->ojt->sekolah}}
+                                        {{$user->ojt && $user->ojt->sekolah}}
                                     </td>
                                     <td class="px-6 py-4">
-                                       {{\App\Models\Ojt::where('user_id', $user->id)->first()->pembimbing}}
+                                       {{$user->ojt && $user->ojt->pembimbing}}
                                     </td> 
                                     <td class="px-6 py-4">
-                                         {{\App\Models\Ojt::where('user_id', $user->id)->first()->mulai_ojt}}
+                                         {{$user->ojt && $user->ojt->mulai_ojt}}
                                     </td>
                                      <td class="px-6 py-4">
-                                         {{\App\Models\Ojt::where('user_id', $user->id)->first()->akhir_ojt}}
+                                         {{$user->ojt && $user->ojt->akhir_ojt}}
                                     </td>
                                 </tr>
                                 @endforeach
