@@ -11,7 +11,7 @@
                     Keterangan</h5>
                 <div class="ml-10 my-2 ">
                     <ul class="list-disc ">
-                        <li>Download Tugas melalui link tugas dahulu, setelah selesai, upload hasil akhir tugas melalui form dibawah</li>
+                        <li>{{$tugas->deskripsi}}</li>
                     </ul>
                 </div>
                 <h5 class="mb-2 ml-4 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Link Tugas
@@ -21,19 +21,40 @@
                         <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
                             <tr>
                                 <th class="px-6 py-3 bg-white dark:bg-white-800">Link Tugas</th>
-                                <td class="px-6 py-3 bg-gray-100 dark:bg-white-800"><a
-                                        href="https://www.youtube.com/watch?v=FEoK645h4h4">https://www.youtube.com/watch?v=FEoK645h4h4</a>
+                                <td class="px-6 py-3 bg-gray-100 dark:bg-white-800"><a target="blank"
+                                        href="{{ asset('storage/tugas/' . $tugas->file) }}">{{$tugas->judul}}</a>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
+                 <div class="flex flex-row w-full">
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-4">
+                            <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
+                                <tr>
+                                    <th class="px-6 py-3 bg-white dark:bg-white-800">Submitted Status</th>
+                                    <td class="px-6 py-3 {{$upload_tugas ? 'bg-green-100' : 'bg-red-100'}} dark:bg-white-800">SUBMITTED FOR GRADING</td>
+                                </tr>
+                                <tr>
+                                    <th class="px-6 py-3 bg-white dark:bg-white-800"> Time Submitted</th>
+                                    <td class="px-6 py-3 bg-gray-100 dark:bg-white-800">{{$upload_tugas ? $upload_tugas->created_at : '-'}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="px-6 py-3 bg-white dark:bg-white-800">File Submission</th>
+                                    <td class="px-6 py-3 bg-gray-100 dark:bg-white-800">{{$upload_tugas ? $upload_tugas->file : '-'}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 <h5 class="mb-2 ml-4 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Upload
                     Upload Tugas</h5>
 
                 <div class="p-4">
-                    <form action="" method="" enctype="multipart/form-data">
+                    <form action="{{$upload_tugas ? route('user.tugas.update', $upload_tugas->id) : route('user.tugas.upload', ['id' => $tugas->id])}}" method="post" enctype="multipart/form-data">
                         @csrf
+                         @if($upload_tugas)
+                        @method('PUT')
+                      @endif
                         <div class="flex items-center justify-center w-full">
                             <label for="dropzone-file"
                                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -58,14 +79,18 @@
                                 <div id="name"
                                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                                 </div>
-                                <input id="dropzone-file" type="file" class="hidden">
+                                <input id="dropzone-file" type="file" name="file" class="hidden">
                             </label>
                         </div>
+                         @error('file')
+                                <span class="text-red-700 text-sm" style="color:red">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         <div class="flex m-4 justify-center items-center gap-4">
-                            <a href="">
+                            <a >
                                 <button type="submit"
-                                    class="mx-auto text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Save
-                                    Files</button>
+                                    class="mx-auto text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">{{$upload_tugas ? 'update' : 'save'}}</button>
                             </a>
                             <a href="{{ url('/elearning/tugas') }}">
                                 <button type="button"

@@ -71,15 +71,14 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
     });
     Route::prefix('tugas')->group(function () {
         Route::get('/', [App\Http\Controllers\User\TugasController::class, 'index'])->name('user.tugas');
-        
-        Route::get('/nama-tugas', function () {
-            return view('dashboardUser.eLearning.tugas.detailTugas');
-        });
+        Route::get('/detail-tugas/{id}', [App\Http\Controllers\User\TugasController::class, 'viewDetailTugas'])->name('user.tugas.detail');
+        Route::post('/upload-tugas/{id}', [App\Http\Controllers\User\TugasController::class, 'tugasUpload'])->name('user.tugas.upload');
+        Route::put('/update-tugas/{id}', [App\Http\Controllers\User\TugasController::class, 'tugasUpdate'])->name('user.tugas.update');
+       
     });
     Route::prefix('absensi')->group(function () {
         Route::get('/', [App\Http\Controllers\User\AbsensiController::class, 'index'])->name('user.elearning.absensi');
         Route::get('/cetak-pdf', [App\Http\Controllers\User\AbsensiController::class, 'cetakAbsensi'])->name('user.elearning.absensi.cetak');
-
         Route::get('/nama-quiz', function () {
             return view('dashboardUser.eLearning.absensi.detailQuiz');
         });
@@ -108,6 +107,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
             return view('dashboardAdmin.absensi.daftarAbsensi');
         });
     });
+
+    route::get('daftar/laporan', [App\Http\Controllers\Admin\DashboardController::class, 'laporanUser'])->name('admin.daftar.laporan');
+    
     Route::prefix('materi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('admin.materi.index');
         Route::get('/upload-materi/{id?}', [\App\Http\Controllers\Admin\materiController::class , 'addMateri'])->name('admin.view.add.materi');
@@ -121,6 +123,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('/upload-tugas', [App\Http\Controllers\Admin\TugasController::class, 'uploadTugas'])->name('admin.upload.tugas');
         Route::put('/update-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'updateTugas'])->name('admin.update.tugas');
         Route::get('/delete-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'deleteTugas'])->name('admin.delete.tugas');
+        Route::get('/detail-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'detailTugasUser'])->name('admin.detail.tugas');
+        
     });
 
     Route::prefix('user')->group(function () {

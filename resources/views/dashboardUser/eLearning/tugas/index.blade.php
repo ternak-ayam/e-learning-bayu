@@ -16,10 +16,16 @@
                         <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
                             <li class="flex items-center">
                                 @foreach ($tugass as $tugas)
-                                    <a href="{{ asset('storage/tugas/' . $tugas->file) }}" target="blank" class="flex flex-row items-center">
+                                <div>
+                                     <a href="{{ asset('storage/tugas/' . $tugas->file) }}" target="blank" class="flex flex-row items-center">
                                         <i class="fa-regular fa-note-sticky mr-2"></i>
-                                        Tugas Menyelamatkan MIMI PERI
+                                        {{$tugas->judul}}
                                     </a>
+                                    <div class="flex">
+                                        <a class="p-2 bg-blue-500 text-white rounded text-sm" href="{{ route('user.tugas.detail', ['id' => $tugas->id])}}">detail tugas</a>
+                                    </div>
+                                </div>
+                                   
                                 @endforeach
                             </li>
                         </ul>

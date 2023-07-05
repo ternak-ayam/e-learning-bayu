@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tugas;
+use App\Models\UploadTugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,7 @@ class TugasController extends Controller
 
     public function uploadTugas(Request $request){
          $request->validate([
+            'judul' => 'required',
             'deskripsi' => 'required',
             'file' => 'required | mimes:pdf,docx,ppt'
          ]);
@@ -34,6 +36,7 @@ class TugasController extends Controller
   
         if($this->uploadFile($request,$fileName,$file)){
             Tugas::create([
+                'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'file' => $fileName
             ]);
@@ -43,6 +46,7 @@ class TugasController extends Controller
 
     public function updateTugas(Request $request,$id){
           $request->validate([
+             'judul' => 'required',
             'deskripsi' => 'required',
             'file' => 'sometimes|mimes:pdf,docx,ppt,jpg,jpeg,png'
          ]);
@@ -54,12 +58,14 @@ class TugasController extends Controller
              
             if($this->updateFile($request,$fileName,$tugas)){
                 // dd($request->file);
+                $tugas->judul = $request->judul;
                 $tugas->deskripsi = $request->deskripsi;
                 $tugas->file = $fileName;
                 $tugas->save();
                 return redirect()->route('admin.tugas.index');
             }
          }else{
+                $tugas->judul = $request->judul;
                 $tugas->deskripsi = $request->deskripsi;
                 $tugas->save();
                 return redirect()->route('admin.tugas.index');
@@ -74,6 +80,12 @@ class TugasController extends Controller
             return redirect()->route('admin.tugas.index');
         };
                 
+    }
+
+    public function detailTugasUser($id){
+        return view('dashboardAdmin.tugas.tugasUserUploaded', [
+            'tugass' => UploadTugas::where('id_tugas',$id)->get()
+        ]);
     }
 
     public function uploadFile(Request $request,$fileName,$file){

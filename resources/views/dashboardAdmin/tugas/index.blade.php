@@ -21,12 +21,13 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd"></path>
                                         </svg>
-                                        {{ $tugas->deskripsi }}
+                                        {{ $tugas->judul }}
                                     </a>
                                 </li>
                                 <div class="flex gap-4">
                                      <a class="text-green-500" href="{{route('admin.view.add.tugas', ['id' => $tugas->id])}}">Edit</a>
                                      <a class="text-red-500" href="{{route('admin.delete.tugas' ,['id' => $tugas->id])}}">Hapus</a>
+                                     <a class="text-blue-500" href="{{route('admin.detail.tugas' ,['id' => $tugas->id])}}">Detail</a>
                                 </div>
                             @endforeach
                             

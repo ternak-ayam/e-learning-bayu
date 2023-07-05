@@ -1,15 +1,14 @@
-@extends('index')
+@extends('indexAdmin')
 @section('content')
     <div class="md:px-52 py-10 ">
         <div class="px-4">
 
             <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Daftar OJT</h5>
+                Pencarian Laporan</h5>
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <div class="w-auto md:w-96 m-4 ml-auto">
+                <div class="w-auto m-4 ml-auto">
                     <form >
-
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div class="relative">
@@ -43,43 +42,36 @@
                                         Asal Sekolah
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Pembimbing
+                                        Judul Laporan
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Mulai OJT
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Akhir OJT
+                                        File
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($laporans as $laporan)
                                 <tr
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
+                                        {{$loop->iteration}}
                                     </th>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{$user->name}}
+                                        {{$laporan->name}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{$user->ojt->sekolah}}
+                                        {{$laporan->ojt && $laporan->ojt->sekolah ? $laporan->ojt->sekolah : '-'}}
                                     </td>
                                     <td class="px-6 py-4">
-                                       {{$user->ojt->pembimbing}}
-                                    </td> 
-                                    <td class="px-6 py-4">
-                                         {{$user->ojt->mulai_ojt}}
+                                        {{$laporan->laporan && $laporan->laporan->judul ? $laporan->laporan->judul : '-'}}
                                     </td>
-                                     <td class="px-6 py-4">
-                                         {{$user->ojt->akhir_ojt}}
+                                    <td class="px-6 py-4">
+                                        <a target="blank" class="bg-green-500 text-white p-2 rounded" href="{{ $laporan->laporan && $laporan->laporan->file ? asset('storage/tugas/' . $laporan->laporan->file) : '#' }}">check</a>
                                     </td>
                                 </tr>
                                 @endforeach
-                                
                               
                             </tbody>
                         </table>
