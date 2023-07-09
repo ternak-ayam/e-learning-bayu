@@ -35,7 +35,7 @@
 
 
                {{-- this is profile --}}
-               <li>
+               {{-- <li>
                 <a href="{{ url('/admin/absensi') }}"
                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                        aria-controls="dashboard" data-collapse-toggle="dashboard">
@@ -55,7 +55,7 @@
                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Absensi</span>
                        
                     </a>
-               </li>
+               </li> --}}
                {{-- end --}}
                {{-- this is profile --}}
                <li>
@@ -77,7 +77,7 @@
 
                {{-- this is dokumen --}}
                <li>
-                <a href="{{ url('/admin/tugas') }}"
+                <a href="{{ url('/admin/quis') }}"
                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                        aria-controls="dokumen" data-collapse-toggle="dokumen">
                        <svg xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
                                d="M20,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19l-.09,0L13.06,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V9S20,9,20,8.94ZM14,5.41,16.59,8H14ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4h5V9a1,1,0,0,0,1,1h5Z">
                            </path>
                        </svg>
-                       <span class="flex-1 ml-3 text-left whitespace-nowrap">Tugas</span>
+                       <span class="flex-1 ml-3 text-left whitespace-nowrap">Quis</span>
                       
                     </a>
                </li>
@@ -107,6 +107,20 @@
                            </path>
                        </svg>
                        <span class="flex-1 ml-3 text-left whitespace-nowrap">User</span>
+                    </a>
+               </li>
+               <li>
+                <a href="{{ route('admin.daftar.laporan') }}"
+                       class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                       aria-controls="dokumen" data-collapse-toggle="dokumen">
+                       <svg xmlns="http://www.w3.org/2000/svg"
+                           class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                           viewBox="0 0 24 24" id="document">
+                           <path
+                               d="M20,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19l-.09,0L13.06,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V9S20,9,20,8.94ZM14,5.41,16.59,8H14ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4h5V9a1,1,0,0,0,1,1h5Z">
+                           </path>
+                       </svg>
+                       <span class="flex-1 ml-3 text-left whitespace-nowrap">Laporan</span>
                       
                     </a>
                </li>

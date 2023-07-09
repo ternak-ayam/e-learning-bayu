@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Materi;
+use App\Models\Quis;
 use App\Models\Tugas;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,10 +20,10 @@ class DashboardController extends Controller
     {
          return view('dashboardUser.dashboard',[
             'materi' => Materi::all()->count(),
-            'tugas' => Tugas::all()->count(),
+            'quis' => Quis::all()->count(),
             'user' => User::all()->count(),
             'latest_materi' => Materi::orderBy('created_at', 'desc')->first(),
-            'latest_tugas' => Tugas::orderBy('created_at', 'desc')->first()
+            'latest_quis' => Quis::orderBy('created_at', 'desc')->first()
          ]);
     }
 

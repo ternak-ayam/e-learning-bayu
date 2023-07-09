@@ -61,9 +61,9 @@
                         <i class="fa-solid fa-pen-to-square fa-xl"></i>
                     </div>
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Tugas</h5>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Quis</h5>
                     </a>
-                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">{{$tugas}}</p>
+                    <p class="mb-3 font-normal text-3xl text-gray-500 dark:text-gray-400">{{$quis}}</p>
                 </div>
 
             </div>
@@ -87,7 +87,7 @@
                                 </a>
 
                             </div>
-                            <a href="{{$latest_materi ? asset('storage/materi/' . $latest_materi->file) : '#'}}" target="blank">
+                            <a target="blank" href="{{$latest_materi ? asset('storage/materi/' . $latest_materi->file) : '#'}}" target="blank">
                                 <button type="submit"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Lihat</button>
                             </a>
@@ -104,11 +104,11 @@
                                     <i class="fa-solid fa-pen-to-square fa-xl"></i>
                                 </div>
                                 <a href="#">
-                                    <p class="mb-3 font-normal text-xl text-gray-500 dark:text-gray-400">{{$latest_tugas ? $latest_tugas->deskripsi : 'belum ada tugas'}}</p>
+                                    <p class="mb-3 font-normal text-xl text-gray-500 dark:text-gray-400">{{$latest_quis ? $latest_quis->deskripsi : 'belum ada tugas'}}</p>
                                 </a>
 
                             </div>
-                            <a href="{{$latest_tugas ?  asset('storage/tugas/' . $latest_tugas->file) : '#'}}">
+                            <a href="{{$latest_quis ?  $latest_quis->link : '#'}}">
                                 <button type="submit"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Lihat</button>
                             </a>

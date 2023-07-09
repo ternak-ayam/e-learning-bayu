@@ -28,9 +28,8 @@
                         </table>
                     </div>
                 </div>
-                <h5 class="mb-2 ml-4 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Upload
+                <h5 class="mb-2 ml-4 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     Upload Tugas</h5>
-
                 <div class="p-4">
                     <form action="" method="" enctype="multipart/form-data">
                         @csrf

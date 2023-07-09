@@ -13,4 +13,10 @@ class DashboardController extends Controller
             'mahasiswas' => User::all()
          ]);
     }
+
+     public function laporanUser(){
+        return view('dashboardAdmin.laporan.index', [
+             'laporans' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get()
+        ]);
+    }
 }
