@@ -17,22 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 // guest
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('user.login');
 });
 
 // login register
 // Route::get('/login', function () {
 //     return view('auth.login');
 // });
-Route::get('/register', function () {
-    return view('auth.register');
-});
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
 
 // dashboard user
 Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth');
  
 
-Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm']);
+Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout');
 
