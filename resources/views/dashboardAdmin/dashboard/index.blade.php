@@ -26,7 +26,7 @@
                     class="mt-10 block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat Datang <span>{{Auth::guard('admin')->user()->name}}</span>
                     </h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">E-Leraning AirNav Denpasar merupakan sebuah
+                    <p class="font-normal text-gray-700 dark:text-gray-400">E-Learning AirNav Denpasar merupakan sebuah
                         sistem informasi untuk mendukung proses
                         belajar mahasiswa kerja praktek.</p>
                 </div>
@@ -84,14 +84,10 @@
                                 </td>
                             </tr>
                             @endforeach
-                          
                         </tbody>
                     </table>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 @endsection

@@ -68,7 +68,12 @@
                                         {{$laporan->laporan && $laporan->laporan->judul ? $laporan->laporan->judul : '-'}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a target="blank" class="bg-green-500 text-white p-2 rounded" href="{{ $laporan->laporan && $laporan->laporan->file ? asset('storage/tugas/' . $laporan->laporan->file) : '#' }}">check</a>
+                                        @if ($laporan->laporan && $laporan->laporan->file)
+                                            <a target="blank" class="bg-green-500 text-white p-2 rounded" href="{{ $laporan->laporan && $laporan->laporan->file ? asset('storage/tugas/' . $laporan->laporan->file) : '#' }}">Cek</a>
+                                        @else
+                                            -
+                                        @endif
+                                        
                                     </td>
                                 </tr>
                                 @endforeach
