@@ -22,6 +22,7 @@
                         <tbody>
                          <form action="{{route('admin.store.absensi.user')}}" method="post">
                             @csrf
+                                <input name="id_pertemuan" type="hidden" value="{{$id_pertemuan}}">
                                 @foreach ($users as $user)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -31,7 +32,7 @@
                                                  {{$user->name}}
                                             </div>
                                             <input name="id_user[]" type="hidden" value="{{$user->id}}">
-                                            <input name="id_pertemuan[]" type="hidden" value="{{$id_pertemuan}}">
+                                            
                                         </th>
                                         <td class="px-6 py-4">
                                            <div class="flex gap-2 justify-center">
@@ -51,7 +52,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                         
                         </tbody>
                     </table>
                     <div class="flex justify-end">

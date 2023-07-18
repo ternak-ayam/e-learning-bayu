@@ -62,7 +62,7 @@ class absensiController extends Controller
         // dd(count($data['id_user']));
         for($i = 0; $i < count($data['id_user']); $i++){
             Absensi::create([
-                'id_pertemuan' => $data['id_pertemuan'][$i],
+                'id_pertemuan' => $data['id_pertemuan'],
                 'id_user' => $data['id_user'][$i],
                 'absensi' => $data['absen'][$i]
             ]);
