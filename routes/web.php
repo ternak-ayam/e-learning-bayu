@@ -44,8 +44,8 @@ Route::middleware('auth')->prefix('profile')->group(function () {
         Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.biodata.index');
         Route::get('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'editBiodata'])->name('edit.biodata');
         Route::put('/edit-biodata/{id}',[App\Http\Controllers\User\ProfileController::class, 'updateBiodata'])->name('update.biodata');
-        Route::get('/edit-password/{user}', [App\Http\Controllers\User\ProfileController::class, 'editPassword'])->name('user.edit.password');
-        Route::post('/edit-password/{user}', [App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('user.update.password');
+        Route::get('/edit-password/{id}', [App\Http\Controllers\User\ProfileController::class, 'editPassword'])->name('user.edit.password');
+        Route::post('/edit-password/{id}', [App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('user.update.password');
     });
     Route::prefix('daftar-ojt')->group(function () {
         Route::get('/', [App\Http\Controllers\User\OjtController::class , 'index'])->name('user.ojt.index');

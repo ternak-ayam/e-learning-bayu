@@ -77,8 +77,8 @@ class ProfileController extends Controller
     
     }
 
-    public function editPassword($user){
-         $user = User::find(Auth::user()->id);
+    public function editPassword($id){
+            $user = User::find($id);
             $age = null;
             if(!$user->tgl_lahir == null){
                 $birthDate = Carbon::createFromFormat('Y-m-d', $user->tgl_lahir);
@@ -89,9 +89,11 @@ class ProfileController extends Controller
 
     public function updatePassword(User $user, Request $request){
         $validatedData = $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|string|min:8|confirmed',
-    ]);
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // dd($user);
 
     if (!Hash::check($validatedData['current_password'], $user->password)) {
         return back()->with('error', 'Current password is incorrect.');

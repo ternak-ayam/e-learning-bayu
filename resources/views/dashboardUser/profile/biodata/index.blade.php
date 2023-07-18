@@ -75,7 +75,7 @@
                                 </a>
                             </div>
                             <div class="">
-                                <a href="{{ route('user.edit.password',['user' => $user->id]) }}">
+                                <a href="{{ route('user.edit.password',['id' => $user->id]) }}">
                                     <button type="button"
                                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"><i
                                             class="fa-solid fa-lock mr-2"></i>Ubah Password</button>
