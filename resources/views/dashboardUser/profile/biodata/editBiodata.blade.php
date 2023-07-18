@@ -11,7 +11,7 @@
                            {{$user->name}}</h5>
                         <h5
                             class="mb-2 w-full text-center text-md font-semibold tracking-tight text-gray-900 dark:text-white pb-4 border-solid border-b-2 border-black">
-                            87 Tahun</h5>
+                             {{ $age ? $age : '-'}} Tahun</h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400">Alamat Email</p>
                         <h5 class="mb-10 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
                              {{$user->email}}</h5>

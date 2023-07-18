@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,17 +13,24 @@ use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     public function index(){
-        // dd(User::find(Auth::user()->id));
-         return view('dashboardUser.profile.biodata.index', [
-              'user' => User::find(Auth::user()->id)
-         ]);
+        $user = User::find(Auth::user()->id);
+        $age = null;
+        if(!$user->tgl_lahir == null){
+            $birthDate = Carbon::createFromFormat('Y-m-d', $user->tgl_lahir);
+            $age = $birthDate->diffInYears(Carbon::now());
+        }
+        return view('dashboardUser.profile.biodata.index' , compact('user' ,'age'));
     }
     
 
     public function editBiodata($id){
-        return view('dashboardUser.profile.biodata.editBiodata', [
-            'user' => User::find($id)
-        ]);
+        $user = User::find(Auth::user()->id);
+        $age = null;
+        if(!$user->tgl_lahir == null){
+            $birthDate = Carbon::createFromFormat('Y-m-d', $user->tgl_lahir);
+            $age = $birthDate->diffInYears(Carbon::now());
+        }
+        return view('dashboardUser.profile.biodata.editBiodata', compact('user', 'age'));
     }
 
     public function updateBiodata($id, Request $request){
@@ -70,9 +78,13 @@ class ProfileController extends Controller
     }
 
     public function editPassword($user){
-          return view('dashboardUser.profile.biodata.editPassword',[
-            'user' => User::find($user)->first()
-          ]);
+         $user = User::find(Auth::user()->id);
+            $age = null;
+            if(!$user->tgl_lahir == null){
+                $birthDate = Carbon::createFromFormat('Y-m-d', $user->tgl_lahir);
+                $age = $birthDate->diffInYears(Carbon::now());
+            }
+          return view('dashboardUser.profile.biodata.editPassword',compact('user','age'));
     }
 
     public function updatePassword(User $user, Request $request){
