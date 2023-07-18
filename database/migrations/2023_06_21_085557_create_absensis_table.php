@@ -21,7 +21,7 @@ class CreateAbsensisTable extends Migration
             $table->char('absensi');
             $table->timestamps();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_pertemuan')->references('id')->on('Pertemuans')->onDelete('cascade');
+            $table->foreign('id_pertemuan')->references('id')->on('pertemuans')->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();
     }
