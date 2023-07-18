@@ -11,7 +11,7 @@
                             {{$user->name}}</h5>
                         <h5
                             class="mb-2 w-full text-center text-md font-semibold tracking-tight text-gray-900 dark:text-white pb-4 border-solid border-b-2 border-black">
-                            87 Tahun</h5>
+                            {{ $age ? $age : '-'}} Tahun</h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400">Alamat Email</p>
                         <h5 class="mb-10 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
                            {{$user->email ? $user->email : '-'}}
@@ -37,6 +37,11 @@
                                 <input type="password" id="namaLengkap" name="current_password"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="*******" required>
+                                    @error('current_password')
+                                    <span class="text-red-700 text-sm" style="color:red">
+                                        {{ $message }}
+                                    </span>
+                                  @enderror
                             </div>
                             <div class="mb-6">
                                 <label for="tempatLahir"
@@ -44,6 +49,11 @@
                                 <input type="password" id="tempatLahir" name="new_password"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="*******" required>
+                                  @error('new_password')
+                                    <span class="text-red-700 text-sm" style="color:red">
+                                        {{ $message }}
+                                    </span>
+                                  @enderror
                             </div>
                             <div class="mb-6">
                                 <label for="tanggalLahir"
@@ -51,6 +61,11 @@
                                 <input type="password" id="tanggalLahir" name="new_password_confirmation"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="*******" required>
+                                  @error('new_password_confirmation')
+                                    <span class="text-red-700 text-sm" style="color:red">
+                                        {{ $message }}
+                                    </span>
+                                  @enderror
                             </div>
                             <button type="submit"
                                 class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Update
