@@ -12,7 +12,7 @@
             <!-- drawer init and show -->
             <div class="text-center">
                 <button
-            
+
                     type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation"
                     aria-controls="drawer-navigation">
                     <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -31,7 +31,7 @@
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                 data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full bg-white" src="{{ asset('/img/user.png') }}" alt="user photo">
+                <img class="w-8 h-8 rounded-full bg-white" src="{{ auth()->user()->image ? asset('storage/materi/' . auth()->user()->image) : asset('/img/user.png') }}" alt="user photo">
             </button>
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -41,11 +41,24 @@
                     <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{Auth::guard(\App\Models\User::getGuard())->user()->email}}</span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
+                    @if(\App\Models\User::getGuard() == 'web')
                     <li>
-                        <form id="signOut" class="hidden" method="POST" action="{{route('logout')}}">@csrf <button type="submit">logout</button></form>
-                        <a onclick="document.getElementById('signOut').submit()"
-                            class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                            out</a>
+                        <a href="{{route('profile.biodata.index')}}"
+                           class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Update Profile</a>
+                    </li>
+                    @endif
+                    <li>
+                        @if(\App\Models\User::getGuard() == 'admin')
+                            <form id="signOut" class="hidden" method="POST" action="{{route('logout.admin')}}">@csrf <button type="submit">logout</button></form>
+                            <a onclick="document.getElementById('signOut').submit()"
+                               class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                out</a>
+                        @else
+                            <form id="signOut" class="hidden" method="POST" action="{{route('logout')}}">@csrf <button type="submit">logout</button></form>
+                            <a onclick="document.getElementById('signOut').submit()"
+                                class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                out</a>
+                        @endif
                     </li>
                 </ul>
             </div>

@@ -30,11 +30,12 @@ Route::get('/register', function () {
 
 // dashboard user
 Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth');
- 
+
 
 Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
-Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout');
+Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout')->middleware('auth');
+
 
 Route::get('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'showLoginForm']);
 Route::post('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'login'])->name('admin.login');
@@ -71,7 +72,7 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
     });
     Route::prefix('quis')->group(function () {
         Route::get('/', [App\Http\Controllers\User\QuisController::class, 'index'])->name('user.quis');
-        
+
         Route::get('/nama-quis', function () {
             return view('dashboardUser.eLearning.tugas.detailTugas');
         });
@@ -91,6 +92,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         // Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     });
+    Route::post('/logout', [App\Http\Controllers\Admin\Auth\loginController::class, 'logout'])->name('logout.admin');
     // Route::prefix('absensi')->group(function () {
     //     Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('admin.absensi.index');
     //     Route::post('/add-pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addPertemuan'])->name('admin.add.absensi');
@@ -109,7 +111,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     // });
 
     route::get('daftar/laporan', [App\Http\Controllers\Admin\DashboardController::class, 'laporanUser'])->name('admin.daftar.laporan');
-    
+
     Route::prefix('materi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('admin.materi.index');
         Route::get('/upload-materi/{id?}', [\App\Http\Controllers\Admin\materiController::class , 'addMateri'])->name('admin.view.add.materi');

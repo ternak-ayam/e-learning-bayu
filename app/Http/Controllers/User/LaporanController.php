@@ -32,7 +32,7 @@ class LaporanController extends Controller
                 'file' => $fileName
             ]);
 
-            return redirect()->route('user.laporan.index');
+            return redirect()->route('user.daftar.laporan');
         }
 
     }
@@ -51,12 +51,12 @@ class LaporanController extends Controller
                 $laporan->judul = $request->judul;
                 $laporan->file = $fileName;
                 $laporan->save();
-                return redirect()->route('user.laporan.index');
+                return redirect()->route('user.daftar.laporan');
             }
         }else{
             $laporan->judul = $request->judul;
             $laporan->save();
-            return redirect()->route('admin.laporan.index');
+            return redirect()->route('user.daftar.laporan');
         }
 
     }
