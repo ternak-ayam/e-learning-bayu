@@ -9,7 +9,7 @@
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="w-full p-4">
                     <div class="my-4">
-                        
+
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
                         {{-- <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Materi</h2> --}}
@@ -22,10 +22,10 @@
                                         {{$tugas->judul}}
                                     </a>
                                     <div class="flex">
-                                        <a class="p-2 bg-blue-500 text-white rounded text-sm" href="{{ route('user.tugas.detail', ['id' => $tugas->id])}}">detail tugas</a>
+                                        <a class="p-2 bg-gray-700 text-white rounded text-sm" href="{{ route('user.tugas.detail', ['id' => $tugas->id])}}">detail tugas</a>
                                     </div>
                                 </div>
-                                   
+
                                 @endforeach
                             </li>
                         </ul>

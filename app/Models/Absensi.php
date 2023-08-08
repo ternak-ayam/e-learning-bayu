@@ -9,7 +9,6 @@ class Absensi extends Model
 {
     use HasFactory;
        protected $fillable = [
-        'id_pertemuan',
         'id_user',
         'absensi'
     ];

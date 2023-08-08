@@ -30,11 +30,12 @@ Route::get('/', function () {
 
 // dashboard user
 Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth');
- 
+
 
 Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
-Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout');
+Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout')->middleware('auth');
+
 
 Route::get('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'showLoginForm']);
 Route::post('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'login'])->name('admin.login');
@@ -74,10 +75,11 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
         Route::get('/detail-tugas/{id}', [App\Http\Controllers\User\TugasController::class, 'viewDetailTugas'])->name('user.tugas.detail');
         Route::post('/upload-tugas/{id}', [App\Http\Controllers\User\TugasController::class, 'tugasUpload'])->name('user.tugas.upload');
         Route::put('/update-tugas/{id}', [App\Http\Controllers\User\TugasController::class, 'tugasUpdate'])->name('user.tugas.update');
-       
+
     });
     Route::prefix('absensi')->group(function () {
         Route::get('/', [App\Http\Controllers\User\AbsensiController::class, 'index'])->name('user.elearning.absensi');
+        Route::get('/add', [App\Http\Controllers\User\AbsensiController::class, 'addAbsensi'])->name('user.elearning.absensi.add');
         Route::get('/cetak-pdf', [App\Http\Controllers\User\AbsensiController::class, 'cetakAbsensi'])->name('user.elearning.absensi.cetak');
         Route::get('/nama-quiz', function () {
             return view('dashboardUser.eLearning.absensi.detailQuiz');
@@ -87,21 +89,14 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
 
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::post('/logout', [App\Http\Controllers\Admin\Auth\loginController::class, 'logout'])->name('logout.admin');
     Route::prefix('dashboard-admin')->group(function () {
         // Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     });
     Route::prefix('absensi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('admin.absensi.index');
-        Route::post('/add-pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addPertemuan'])->name('admin.add.absensi');
-        Route::put('/update-pertemuan/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updatePertemuan'])->name('admin.update.absensi');
-        Route::get('/tambah-pertemuan/{id?}', [\App\Http\Controllers\Admin\absensiController::class, 'createPertemuan'])->name('admin.view.add.absensi');
-        Route::get('/delete-pertemuan/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'deletePertemuan'])->name('admin.delete.absensi');
-
-        Route::get('/tambah-absensi/{id?}', [\App\Http\Controllers\Admin\absensiController::class, 'createAbsensi'])->name('admin.view.add.absensi.user');
-        Route::post('/tambah-absensi', [\App\Http\Controllers\Admin\absensiController::class, 'addAbsensi'])->name('admin.store.absensi.user');
-        Route::get('/update-absensi/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updateAbsensiView'])->name('admin.view.update.absensi.user');
-        Route::put('/update-absensi/{id}', [\App\Http\Controllers\Admin\absensiController::class, 'updateAbsensi'])->name('admin.update.absensi.user');
+        Route::get('/detail/{user}', [\App\Http\Controllers\Admin\absensiController::class, 'detailAbsensi'])->name('admin.absensi.detail');
 
         Route::get('/daftar-absensi/2', function () {
             return view('dashboardAdmin.absensi.daftarAbsensi');
@@ -109,7 +104,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     });
 
     route::get('daftar/laporan', [App\Http\Controllers\Admin\DashboardController::class, 'laporanUser'])->name('admin.daftar.laporan');
-    
+
     Route::prefix('materi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('admin.materi.index');
         Route::get('/upload-materi/{id?}', [\App\Http\Controllers\Admin\materiController::class , 'addMateri'])->name('admin.view.add.materi');
@@ -124,7 +119,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::put('/update-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'updateTugas'])->name('admin.update.tugas');
         Route::get('/delete-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'deleteTugas'])->name('admin.delete.tugas');
         Route::get('/detail-tugas/{id}', [App\Http\Controllers\Admin\TugasController::class, 'detailTugasUser'])->name('admin.detail.tugas');
-        
+
     });
 
     Route::prefix('user')->group(function () {

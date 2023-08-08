@@ -2,15 +2,20 @@
 @section('content')
     <div class="md:px-52 py-10 ">
         <div class="px-4">
-
-            <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Materi</h5>
-            <div
-                class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <div class="flex gap-4 items-center justify-between">
+                <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Materi</h5>
+                <a href="{{ url('/admin/materi/upload-materi') }}">
+                    <button
+                        class="my-4 text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fa-solid fa-folder mr-2"></i>Upload
+                        Materi</button>
+                </a>
+            </div>
+            <div class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="w-full p-4">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
-
                         <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Daftar Materi</h2>
+
                         <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
                             @foreach ($materis as $materi)
                                 <li class="flex items-center">
@@ -30,16 +35,10 @@
                                 </div>
                             @endforeach
                         </ul>
-                        <a href="{{ url('/admin/materi/upload-materi') }}">
-                            <button
-                                class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fa-solid fa-folder mr-2"></i>Upload
-                                Materi</button>
-                        </a>
+
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection
