@@ -14,7 +14,7 @@
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
                         {{-- <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Materi</h2> --}}
                         <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
-                            <li class="flex items-center">
+                            <li>
                                 @foreach ($quiss as $quis)
                                     <a target="blank" href="{{ $quis->link }}" target="blank" class="flex flex-row items-center text-blue-600">
                                         <i class="fa-regular fa-note-sticky mr-2 "></i>
