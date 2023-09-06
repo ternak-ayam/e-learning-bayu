@@ -25,8 +25,8 @@
                                     </a>
                                 </li>
                                  <div class="flex gap-4">
-                                     <a class="text-green-500" href="{{route('admin.view.add.materi', ['id' => $materi->id])}}">Edit</a>
-                                     <a class="text-red-500" href="{{route('admin.delete.materi' ,['id' => $materi->id])}}">Hapus</a>
+                                     <a class="text-green-500" href="{{route('admin.view.add.materi', ['id' => $materi->id])}}">edit</a>
+                                     <a class="text-red-500" href="{{route('admin.delete.materi' ,['id' => $materi->id])}}">hapus</a>
                                 </div>
                             @endforeach
                         </ul>
