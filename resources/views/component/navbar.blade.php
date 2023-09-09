@@ -1,8 +1,10 @@
 {{-- navbar --}}
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
-        <a href="#" class="flex items-center gap-6">
+    <div class="w-full  flex-wrap items-center flex mx-auto p-4">
+        <div class="flex flex-1 justify-start gap-6">
+            <a href="{{ url('/admin/dashboard-admin/') }}">
             <img src="{{ asset('/img/logo-login.png') }}" class="h-12 mr-3" alt="Flowbite Logo" />
+            </a>
             <div class="hidden md:flex flex-col flex-start">
                 <span class="self-start text-lg font-semibold whitespace-nowrap dark:text-white">SISTEM
                     INFORMASI</span>
@@ -25,7 +27,9 @@
                 </button>
             </div>
         </a>
-        <div class="flex items-center md:order-2">
+        </div>
+       <div class="flex flex-1 justify-end lg:mr-4">
+            <div class="flex items-center md:order-2 ">
             <button type="button"
                 class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
@@ -34,7 +38,7 @@
                 <img class="w-8 h-8 rounded-full bg-white" src="{{ auth()->user()->image ? asset('storage/materi/' . auth()->user()->image) : asset('/img/user.png') }}" alt="user photo">
             </button>
             <!-- Dropdown menu -->
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+            <div class="z-50 hidden my-4  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown">
                 <div class="px-4 py-3">
                     <span class="block text-sm text-gray-900 dark:text-white">{{Auth::guard(\App\Models\User::getGuard())->user()->name}}</span>
@@ -63,5 +67,6 @@
                 </ul>
             </div>
         </div>
+       </div>
 </nav>
 {{-- end of navbar --}}

@@ -4,10 +4,10 @@
         <div class="px-4">
 
             <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Pencarian Laporan</h5>
+                Laporan</h5>
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <div class="w-auto m-4 ml-auto">
+                <div class="w-auto m-4 ml-auto ">
                     <form >
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -27,10 +27,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="w-full p-4">
+                <div class="w-full py-1 px-4 ">
                     <a href="{{ url('/dokumen/pengumpulan-laporan') }}">
                         <button
-                            class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fa-solid fa-folder mr-2"></i>Pengumpulan Laporan</button>
+                            class="my-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fa-solid fa-folder mr-2"></i>Pengumpulan Laporan</button>
                     </a>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Fasilitas;
 use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,21 +13,49 @@ class materiController extends Controller
 {
     public function index(){
         return view('dashboardAdmin.materi.index' , [
-            'materis' => Materi::all()
+            'materis' => Materi::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get(),
+            'categorys' => Category::all(),
+            'fasilitass' => Fasilitas::all()
         ]);
     }
+
+
+    public function filterMateri(Request $request){
+        $category = $request->input('category');
+        $fasilitas = $request->input('fasilitas');
+        $filter = Materi::query();
+        if($category){
+            $filter->where('category_id', '=',$category);
+        }
+        if($fasilitas){
+            $filter->where('fasilitas_id', '=',$fasilitas);
+        }
+
+        $materis = $filter->get();
+        return view('dashboardAdmin.materi.index' , [
+            'materis' => $materis,
+            'categorys' => Category::all(),
+            'fasilitass' => Fasilitas::all()
+        ]);
+
+    }
     public function addMateri($id = null){
-         if($id != null){
+        $categorys = Category::all();
+        $fasilitass = Fasilitas::all();
+        if($id != null){
             $materi = Materi::find($id);
         }else{
             $materi = null;
         }
-        return view('dashboardAdmin.materi.create', compact('materi'));
+        return view('dashboardAdmin.materi.create', compact('materi','categorys','fasilitass'));
     }
 
     public function storeMateri(Request $request){
         // dd($request->all());
         $this->validate($request, [
+            'author' => 'required',
+            'fasilitas' => 'required',
+            'category' => 'required',
             'deskripsi' => 'required',
             'file' => 'required|mimes:pdf,docx,ppt,jpg,jpeg,png',
         ]);
@@ -34,6 +64,9 @@ class materiController extends Controller
   
         if($this->uploadFile($request,$fileName,$file)){
             Materi::create([
+                'author' => $request->author,
+                'category_id' => $request->category,
+                'fasilitas_id' => $request->fasilitas,
                 'deskripsi' => $request->deskripsi,
                 'file' => $fileName
             ]);
@@ -43,6 +76,9 @@ class materiController extends Controller
 
     public function updateMateri(Request $request,$id){
          $this->validate($request, [
+            'author' => 'required',
+            'fasilitas' => 'required',
+            'category' => 'required',
             'deskripsi' => 'required',
             'file' => 'sometimes|mimes:pdf,docx,ppt,jpeg,jpg,png',
          ]);
@@ -55,12 +91,18 @@ class materiController extends Controller
              
             if($this->updateFile($request,$fileName,$materi)){
                 // dd($request->file);
+                $materi->author = $request->author;
+                $materi->category_id = $request->category;
+                $materi->fasilitas_id= $request->fasilitas;
                 $materi->deskripsi = $request->deskripsi;
                 $materi->file = $fileName;
                 $materi->save();
                 return redirect()->route('admin.materi.index');
             }
          }else{
+                $materi->author = $request->author;
+                $materi->category_id = $request->category;
+                $materi->fasilitas_id= $request->fasilitas;
                 $materi->deskripsi = $request->deskripsi;
                 $materi->save();
                 return redirect()->route('admin.materi.index');

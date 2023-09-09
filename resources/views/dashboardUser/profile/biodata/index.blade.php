@@ -5,9 +5,12 @@
 
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <div class="">
+                <div >
                     <div class="flex flex-col p-10">
-                        <img src="{{$user->image ? asset('storage/materi/' . $user->image) : asset('/img/users.png') }}" class="w-48 mx-auto bordered rounded-full" alt="">
+                        <div class="w-48 h-48 mx-auto rounded-full overflow-hidden ">
+                             <img src="{{$user->image ? asset('storage/materi/' . $user->image) : asset('/img/users.png') }}" class="w-48  mx-auto bordered rounded-full" alt="">
+                        </div>
+                       
                         <h5 class="mb-2 mt-2  text-center text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                             </h5>
                         <h5
@@ -18,11 +21,11 @@
                             {{$user->email}}
                         </h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400">Telepon</p>
-                        <h5 class="mb-10 text-md font-semibold tracking-tight text-gray-900 dark:text-white">   {{$user->phone ? '0' . $user->phone : '-'}}
-                        </h5>
+                        <h5 class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">   {{$user->phone ? '0' . $user->phone : '-'}}
+                        {{-- </h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400">Alamat</p>
                         <h5 class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">   {{$user->alamat ? $user->alamat : '-'}}
-                        </h5>
+                        </h5> --}}
                     </div>
                 </div>
                 <div class="w-full p-4">
@@ -70,14 +73,14 @@
                             <div class="">
                                 <a href="{{route('edit.biodata', ['id' => $user->id]) }}">
                                     <button type="button"
-                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"><i
+                                        class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"><i
                                             class="fa-regular fa-address-card mr-2"></i> Ubah Biodata</button>
                                 </a>
                             </div>
                             <div class="">
                                 <a href="{{ route('user.edit.password',['user' => $user->id]) }}">
                                     <button type="button"
-                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"><i
+                                        class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"><i
                                             class="fa-solid fa-lock mr-2"></i>Ubah Password</button>
                                 </a>
                             </div>

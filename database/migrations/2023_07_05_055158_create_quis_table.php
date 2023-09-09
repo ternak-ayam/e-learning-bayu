@@ -16,6 +16,9 @@ class CreateQuisTable extends Migration
         Schema::create('quis', function (Blueprint $table) {
             $table->id();
             $table->string('deskripsi');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('fasilitas_id');
+            $table->char('author');
             $table->string('link');
             $table->timestamps();
         });

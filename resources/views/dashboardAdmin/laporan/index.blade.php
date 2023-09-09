@@ -4,7 +4,7 @@
         <div class="px-4">
 
             <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Pencarian Laporan</h5>
+                Laporan</h5>
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="w-auto m-4 ml-auto">
@@ -77,15 +77,11 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                
-                              
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection

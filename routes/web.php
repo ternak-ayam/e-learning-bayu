@@ -68,11 +68,12 @@ Route::prefix('dokumen')->middleware('auth')->group(function () {
 Route::prefix('elearning')->middleware('auth')->group(function () {
     Route::prefix('materi')->group(function () {
         Route::get('/', [materiController::class, 'index'] );
+        Route::get('/filter',[\App\Http\Controllers\User\materiController::class , 'filterMateri'])->name('user.filter.materi');
         Route::get('/download/all/file', [materiController::class, 'downloadAllFile'])->name('download.all.file');
     });
     Route::prefix('quis')->group(function () {
         Route::get('/', [App\Http\Controllers\User\QuisController::class, 'index'])->name('user.quis');
-
+        Route::get('/filter',[\App\Http\Controllers\User\QuisController::class , 'filterQuis'])->name('user.filter.quis');
         Route::get('/nama-quis', function () {
             return view('dashboardUser.eLearning.tugas.detailTugas');
         });
@@ -114,6 +115,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::prefix('materi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('admin.materi.index');
+        Route::get('/filter',[\App\Http\Controllers\Admin\materiController::class , 'filterMateri'])->name('admin.filter.materi');
         Route::get('/upload-materi/{id?}', [\App\Http\Controllers\Admin\materiController::class , 'addMateri'])->name('admin.view.add.materi');
         Route::post('/upload-materi', [\App\Http\Controllers\Admin\materiController::class , 'storeMateri'])->name('admin.store.materi');
         Route::put('/update-materi/{id}', [App\Http\Controllers\Admin\materiController::class, 'updateMateri'])->name('admin.update.materi');
@@ -121,6 +123,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     });
     Route::prefix('quis')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\QuisController::class, 'index'])->name('admin.quis.index');
+        Route::get('/filter',[\App\Http\Controllers\Admin\QuisController::class , 'filterQuis'])->name('admin.filter.quis');
         Route::get('/upload-quis/{id?}', [App\Http\Controllers\Admin\QuisController::class, 'viewAddQuis'])->name('admin.view.add.quis');
         Route::post('/upload-quis', [App\Http\Controllers\Admin\QuisController::class, 'uploadQuis'])->name('admin.upload.quis');
         Route::put('/update-quis/{id}', [App\Http\Controllers\Admin\QuisController::class, 'updateQuis'])->name('admin.update.quis');
@@ -134,5 +137,4 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::put('/updateUser/{id}', [App\Http\Controllers\Admin\UserController::class, 'updateUser'])->name('admin.update.user');
         Route::get('/delete-user/{id}', [App\Http\Controllers\Admin\UserController::class, 'deleteUser'])->name('admin.delete.user');
     });
-
 });

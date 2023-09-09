@@ -12,8 +12,9 @@ class UserController extends Controller
 {
     public function index(){
         return view('dashboardAdmin.user.index',
-        ['users' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get()]);
+        ['users' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->paginate(5)]);
     }
+
 
     public function viewAddUser($id = null){
         $user = ($id != null) ? User::find($id) : null;

@@ -20,14 +20,7 @@
                <li>
                    <a href="{{ url('/admin/dashboard-admin/') }}"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                       <svg xmlns="http://www.w3.org/2000/svg"
-                           class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                           viewBox="0 0 100 100" id="computer">
-                           <path
-                               d="M84 17H16c-3.3 0-6 2.7-6 6v42c0 3.3 2.7 6 6 6h22v4.2c-.1.4-.9 1.5-1.3 2-1.1 1.4-2.2 2.8-1.4 4.4.3.7 1.1 1.4 2.7 1.4h23c1 0 3.3 0 4.1-1.8.8-1.8-.6-3.2-1.8-4.5-.4-.5-1.1-1.2-1.3-1.6V71h22c3.3 0 6-2.7 6-6V23c0-3.3-2.7-6-6-6zM40.3 79c.9-1.1 1.7-2.4 1.7-3.8V71h16v4.2c0 1.4 1 2.7 2 3.8H40.3zM86 65c0 1.1-.9 2-2 2H16c-1.1 0-2-.9-2-2v-6h72v6zm0-10H14V23c0-1.1.9-2 2-2h68c1.1 0 2 .9 2 2v32z">
-                           </path>
-                           <path fill="#00F" d="M524-370v1684h-1784V-370H524m8-8h-1800v1700H532V-378z"></path>
-                       </svg>
+                       <i class="fas fa-home"></i>
                        <span class="ml-3">Dashboard Admin</span>
                    </a>
                </li>
@@ -62,14 +55,8 @@
                 <a href="{{ url('/admin/materi') }}"
                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                        aria-controls="dashboard" data-collapse-toggle="dashboard">
-                       <svg xmlns="http://www.w3.org/2000/svg"
-                           class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                           enable-background="new 0 0 512 512" viewBox="0 0 512 512" id="user">
-                           <path
-                               d="M376.9 175.9c-.3 49.8-31.7 96.2-78.8 113.4-48.2 17.6-102.7 2.8-135.5-36.6-32.4-38.9-36.2-96-10.2-139.1 26-43.3 78.1-66.4 127.7-56.2 49.2 10.1 87.5 50.3 95.5 99.8C376.5 163.4 376.9 169.7 376.9 175.9c.1 9.6 15.1 9.7 15 0-.3-56.7-36-107.9-89.2-127.6-53-19.7-115.2-2.9-151.2 40.7-36.4 44.2-41.7 108.2-11.8 157.4 29.6 48.5 87.3 73.6 142.9 62.8 54.8-10.7 99.1-56.7 107.5-111.9 1.1-7.1 1.7-14.2 1.7-21.3C392 166.3 377 166.3 376.9 175.9zM22.7 469.8c49.5-48.5 111.9-82.8 180.5-94.4 64.5-10.9 131.8-.6 190.7 27.6 35.2 16.9 67.3 39.6 95.3 66.8 6.9 6.7 17.6-3.9 10.6-10.6-51.1-49.4-115.6-85-185.9-97.6-67.8-12.2-137.8-2.8-200.3 26.3C76 405.5 41.8 430.1 12.1 459.2 5.2 465.9 15.8 476.5 22.7 469.8L22.7 469.8z">
-                           </path>
-                       </svg>
-                       <span class="flex-1 ml-3 text-left whitespace-nowrap">Materi</span>
+                       <i class="fa-solid fa-book"></i>
+                       <span class="flex-1 ml-4 text-left whitespace-nowrap">Materi</span>
                        
                     </a>
                </li>
@@ -80,14 +67,8 @@
                 <a href="{{ url('/admin/quis') }}"
                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                        aria-controls="dokumen" data-collapse-toggle="dokumen">
-                       <svg xmlns="http://www.w3.org/2000/svg"
-                           class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                           viewBox="0 0 24 24" id="document">
-                           <path
-                               d="M20,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19l-.09,0L13.06,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V9S20,9,20,8.94ZM14,5.41,16.59,8H14ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4h5V9a1,1,0,0,0,1,1h5Z">
-                           </path>
-                       </svg>
-                       <span class="flex-1 ml-3 text-left whitespace-nowrap">Quis</span>
+                       <i class="fas fa-file"></i>
+                       <span class="flex-1 ml-5 text-left whitespace-nowrap">Quis</span>
                       
                     </a>
                </li>
@@ -99,13 +80,7 @@
                 <a href="{{ route('admin.user.index') }}"
                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                        aria-controls="dokumen" data-collapse-toggle="dokumen">
-                       <svg xmlns="http://www.w3.org/2000/svg"
-                           class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                           enable-background="new 0 0 512 512" viewBox="0 0 512 512" id="user">
-                           <path
-                               d="M376.9 175.9c-.3 49.8-31.7 96.2-78.8 113.4-48.2 17.6-102.7 2.8-135.5-36.6-32.4-38.9-36.2-96-10.2-139.1 26-43.3 78.1-66.4 127.7-56.2 49.2 10.1 87.5 50.3 95.5 99.8C376.5 163.4 376.9 169.7 376.9 175.9c.1 9.6 15.1 9.7 15 0-.3-56.7-36-107.9-89.2-127.6-53-19.7-115.2-2.9-151.2 40.7-36.4 44.2-41.7 108.2-11.8 157.4 29.6 48.5 87.3 73.6 142.9 62.8 54.8-10.7 99.1-56.7 107.5-111.9 1.1-7.1 1.7-14.2 1.7-21.3C392 166.3 377 166.3 376.9 175.9zM22.7 469.8c49.5-48.5 111.9-82.8 180.5-94.4 64.5-10.9 131.8-.6 190.7 27.6 35.2 16.9 67.3 39.6 95.3 66.8 6.9 6.7 17.6-3.9 10.6-10.6-51.1-49.4-115.6-85-185.9-97.6-67.8-12.2-137.8-2.8-200.3 26.3C76 405.5 41.8 430.1 12.1 459.2 5.2 465.9 15.8 476.5 22.7 469.8L22.7 469.8z">
-                           </path>
-                       </svg>
+                       <i class="fas fa-users"></i>
                        <span class="flex-1 ml-3 text-left whitespace-nowrap">User</span>
                     </a>
                </li>
@@ -113,14 +88,8 @@
                 <a href="{{ route('admin.daftar.laporan') }}"
                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                        aria-controls="dokumen" data-collapse-toggle="dokumen">
-                       <svg xmlns="http://www.w3.org/2000/svg"
-                           class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                           viewBox="0 0 24 24" id="document">
-                           <path
-                               d="M20,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19l-.09,0L13.06,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V9S20,9,20,8.94ZM14,5.41,16.59,8H14ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4h5V9a1,1,0,0,0,1,1h5Z">
-                           </path>
-                       </svg>
-                       <span class="flex-1 ml-3 text-left whitespace-nowrap">Laporan</span>
+                       <i class="fas fa-file-contract"></i>
+                       <span class="flex-1 ml-4 text-left whitespace-nowrap">Laporan</span>
                       
                     </a>
                </li>

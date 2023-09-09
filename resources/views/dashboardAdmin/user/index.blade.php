@@ -77,11 +77,14 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                
-                              
                             </tbody>
                         </table>
+                        
                     </div>
+                    <div class="flex w-full mt-2 justify-end">
+                        {{$users->links()}}
+                    </div>
+                    
                 </div>
             </div>
 
