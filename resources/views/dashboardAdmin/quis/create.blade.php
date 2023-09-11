@@ -39,18 +39,6 @@
                     </span>
                     @enderror
                     <div class="w-full">
-                        <label for="fasilitas"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fasilitas</label>
-                        <select name="fasilitas" 
-                            class="bg-gray-50 border w-full border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            @foreach ($fasilitass as $fasilitas)
-                            <option
-                                {{ $tugas && $tugas->fasilitas_id == $fasilitas->id ? 'selected' : '' }}
-                                value="{{$fasilitas->id}}">{{$fasilitas->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="w-full">
                         <label for="category"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Caterogy</label>
                         <select name="category" 
@@ -62,6 +50,19 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="w-full">
+                        <label for="fasilitas"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fasilitas</label>
+                        <select name="fasilitas" 
+                            class="bg-gray-50 border w-full border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            @foreach ($fasilitass as $fasilitas)
+                            <option
+                                {{ $tugas && $tugas->fasilitas_id == $fasilitas->id ? 'selected' : '' }}
+                                value="{{$fasilitas->id}}">{{$fasilitas->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
                     <div class="pb-2">
                         <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link
                             Quis</label>

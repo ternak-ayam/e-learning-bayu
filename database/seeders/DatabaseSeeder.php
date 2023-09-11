@@ -23,12 +23,60 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => password_hash('password', PASSWORD_DEFAULT),
-
-
         ]);
 
-        $categorys = ['Communication','VHF','HF','ATIS','VSCS','RECORDER','Navigation','DVOR','DME','Automation','ATCAS','AMSC','Survellance'];
-        $fasilitass = ['ILS','RADAR MSSR','ADSB'];
+        $categorys = ['Communication','Navigation','Survellance','Automation'];
+        $fasilitass = [
+            [
+                'name' => 'VHF',
+                'id' => 1
+            ],
+            [
+                'name' => 'HF',
+                'id' => 1
+            ],
+            [
+                'name' => 'ATIS',
+                'id' => 1
+            ],
+            [
+                'name' => 'VSCS',
+                'id' => 1
+            ],
+             [
+                'name' => 'RECORDER',
+                'id' => 1
+            ],
+             [
+                'name' => 'ILS',
+                'id' => 2
+            ],
+             [
+                'name' => 'DVOR',
+                'id' => 2
+            ],
+            [
+                'name' => 'DME',
+                'id' => 2
+            ],
+            [
+                'name' => 'RADAR MSSR',
+                'id' => 3
+            ],
+            [
+                'name' => 'ADSB',
+                'id' => 3
+            ],
+            [
+                'name' => 'ATCAS',
+                'id' => 4
+            ],
+            [
+                'name' => 'AMSC',
+                'id' => 4
+            ],
+            
+        ];
         foreach($categorys as $category){
             Category::create([
                 'name' => $category,
@@ -37,7 +85,8 @@ class DatabaseSeeder extends Seeder
 
         foreach($fasilitass as $fasilitas){
             Fasilitas::create([
-                'name' => $fasilitas
+                'name' => $fasilitas['name'],
+                'category_id' => $fasilitas['id']
             ]);
         }
         
