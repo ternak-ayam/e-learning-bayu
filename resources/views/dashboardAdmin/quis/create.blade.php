@@ -2,16 +2,13 @@
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="md:px-52 py-10 ">
-    <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 text-center dark:text-white">
         Upload Tugas</h5>
     <div class="px-4">
         <div
             class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-
-
-
             <div class="p-4">
-                <form action="{{$tugas ? route('admin.update.quis' , $tugas->id) :  route('admin.upload.quis')}}"
+                <form class="lg:px-48 p-1" action="{{$tugas ? route('admin.update.quis' , $tugas->id) :  route('admin.upload.quis')}}"
                     method="POST" enctype="multipart/form-data">
                     @if($tugas)
                     @method('PUT')
@@ -81,7 +78,7 @@
                     <div class="flex m-4 justify-center items-center gap-4">
                         <a>
                             <button type="submit"
-                                class="mx-auto text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Simpan</button>
+                                class="mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Simpan</button>
                         </a>
                         <a href="{{ url('/admin/quis') }}">
                             <button type="button"

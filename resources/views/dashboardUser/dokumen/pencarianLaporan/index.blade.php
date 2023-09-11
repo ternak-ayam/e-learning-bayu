@@ -73,6 +73,9 @@
 
                             </tbody>
                         </table>
+                         <div class="flex w-full mt-2 justify-end">
+                            {{$laporans->links()}}
+                        </div>
                     </div>
                 </div>
             </div>

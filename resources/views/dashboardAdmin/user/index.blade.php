@@ -48,6 +48,12 @@
                                      <th scope="col" class="px-6 py-3">
                                         phone
                                     </th>
+                                     <th scope="col" class="px-6 py-3">
+                                        Mulai Ojt
+                                    </th>
+                                     <th scope="col" class="px-6 py-3">
+                                        Akhir Ojt
+                                    </th>
                                     <th scope="col" class="px-6 py-3">
                                         Action
                                     </th>
@@ -71,6 +77,12 @@
                                     <td class="px-6 py-4">
                                         {{$user->phone}}
                                     </td>
+                                    <td class="px-6 py-4">
+                                       {{$user->ojt->mulai_ojt}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                       {{$user->ojt->akhir_ojt}}
+                                    </td>
                                      <td class="px-6 py-4 flex gap-2 flex-wrap">
                                         <a href="{{route('admin.view.add.user', ['id' => $user->id])}}" class="p-2 rounded bg-green-400"><i class="fa-solid fa-pen text-white"></i></a>
                                         <a href="{{route('admin.delete.user' , ['id' => $user->id])}}" class="p-2 rounded bg-red-400"><i class="fas fa-trash text-white"></i></a>
@@ -79,7 +91,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
                     </div>
                     <div class="flex w-full mt-2 justify-end">
                         {{$users->links()}}

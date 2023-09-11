@@ -63,7 +63,7 @@ class LaporanController extends Controller
 
     public function daftarLaporan(){
          return view('dashboardUser.dokumen.pencarianLaporan.index',[
-            'laporans' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get()
+            'laporans' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->paginate(10)
          ]);
     }
 

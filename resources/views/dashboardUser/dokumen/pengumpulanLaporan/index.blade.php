@@ -2,15 +2,15 @@
 @section('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <div class="md:px-52 py-10 ">
-        <h5 class="mb-2 ml-2 md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h5 class="mb-2 ml-2 text-center md:text-start text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             Dokumen</h5>
         <div class="px-4">
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="p-4">
-                    <div class="flex flex-row w-full">
-                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-4">
-                            <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
+                    <div class="flex flex-row w-full lg:px-48 p-1 ">
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                            <table class="text-sm text-left text-gray-500 dark:text-gray-400">
                                 <tr>
                                     <th class="px-6 py-3 bg-white dark:bg-white-800">Submitted Status</th>
                                     <td class="px-6 py-3 {{$laporan ? 'bg-green-100' : 'bg-red-100'}} dark:bg-white-800">SUBMITTED FOR GRADING</td>
@@ -26,7 +26,7 @@
                             </table>
                         </div>
                     </div>
-                    <form action="{{$laporan ? route('user.laporan.update', $laporan->id) : route('user.laporan.upload')}}" method="POST" enctype="multipart/form-data">
+                    <form class="lg:px-48 p-1" action="{{$laporan ? route('user.laporan.update', $laporan->id) : route('user.laporan.upload')}}" method="POST" enctype="multipart/form-data">
                       @if($laporan)
                         @method('PUT')
                       @endif
@@ -74,11 +74,15 @@
                         
                         </div>
                         
-                        <div class="flex m-4 justify-center items-center">
+                        <div class="flex m-4 gap-2 justify-center items-center">
                             <a >
                                 <button type="submit"
-                                    class="mx-auto text-white bg-blue-700 focus:ring-4 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800    ">{{$laporan ? 'Edit Submission' :'Save Submission'}}</button>
+                                    class="mx-auto text-white bg-blue-700 focus:ring-4 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5   ">{{$laporan ? 'Edit Submission' :'Save Submission'}}</button>
                             </a>
+                             <a href="{{ url('/dokumen/pencarian-laporan') }}">
+                                    <button type="button"
+                                        class="mx-auto text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">Cancel</button>
+                                </a>
                         </div>
                     </form>
                         

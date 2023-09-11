@@ -7,11 +7,8 @@
         <div class="px-4">
             <div
                 class="flex flex-col w-full  bg-white border border-gray-200 rounded-lg shadow   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-
-
-
                 <div class="p-4">
-                    <form action="" method="" enctype="multipart/form-data">
+                    <form class="lg:px-48 p-1" action="" method="" enctype="multipart/form-data">
                         @csrf
                         <div class="flex items-center justify-center w-full">
                             <label for="dropzone-file"
