@@ -172,6 +172,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="flex w-full mt-2 justify-end">
+                        {{$materis->links()}}
+                        </div>
                         
                     </div>
                 </div>

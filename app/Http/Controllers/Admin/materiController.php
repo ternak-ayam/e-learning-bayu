@@ -13,7 +13,7 @@ class materiController extends Controller
 {
     public function index(){
         return view('dashboardAdmin.materi.index' , [
-            'materis' => Materi::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get(),
+            'materis' => Materi::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->paginate(10),
             'categorys' => Category::all(),
             'fasilitass' => Fasilitas::all()
         ]);
@@ -31,7 +31,7 @@ class materiController extends Controller
             $filter->where('fasilitas_id', '=',$fasilitas);
         }
 
-        $materis = $filter->get();
+        $materis = $filter->paginate(10);
         return view('dashboardAdmin.materi.index' , [
             'materis' => $materis,
             'categorys' => Category::all(),

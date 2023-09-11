@@ -154,7 +154,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+                        <div class="flex w-full mt-2 justify-end">
+                        {{$quiss->links()}}
+                    </div>
                     </div>
                 </div>
             </div>

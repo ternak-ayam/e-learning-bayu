@@ -13,7 +13,7 @@ class QuisController extends Controller
 {
     public function index(){
          return view('dashboardUser.eLearning.quis.index',[
-            'quiss' => Quis::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->get(),
+            'quiss' => Quis::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->paginate(1),
             'categorys' => Category::all(),
             'fasilitass' => Fasilitas::all()
          ]);
@@ -29,7 +29,7 @@ class QuisController extends Controller
             $filter->where('fasilitas_id', '=',$fasilitas);
         }
 
-        $quiss = $filter->get();
+        $quiss = $filter->paginate(10);
         return view('dashboardUser.eLearning.quis.index' , [
             'quiss' => $quiss,
             'categorys' => Category::all(),
