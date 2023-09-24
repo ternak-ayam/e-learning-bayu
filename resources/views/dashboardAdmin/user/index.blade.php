@@ -28,10 +28,10 @@
                     </form>
                 </div>
                 <div class="w-full p-4">
-                     <a href="{{ route('admin.view.add.user') }}">
+                     {{-- <a href="{{ route('admin.view.add.user') }}">
                             <button
                                 class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fas fa-user mr-2"></i>Tambah User</button>
-                        </a>
+                        </a> --}}
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

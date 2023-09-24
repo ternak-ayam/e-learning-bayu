@@ -35,6 +35,8 @@ Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 
 Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/register', [App\Http\Controllers\Auth\registerController::class, 'index'])->name('user.register');
+Route::post('/register/store', [App\Http\Controllers\Auth\registerController::class, 'register'])->name('user.register.store');
 
 
 Route::get('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'showLoginForm']);
@@ -133,7 +135,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.user.index');
         Route::get('/addUser/{id?}', [App\Http\Controllers\Admin\UserController::class, 'viewAddUser'])->name('admin.view.add.user');
-        Route::post('/addUser', [App\Http\Controllers\Admin\UserController::class, 'addUser'])->name('admin.add.user');
+        // Route::post('/addUser', [App\Http\Controllers\Admin\UserController::class, 'addUser'])->name('admin.add.user');
         Route::put('/updateUser/{id}', [App\Http\Controllers\Admin\UserController::class, 'updateUser'])->name('admin.update.user');
         Route::get('/delete-user/{id}', [App\Http\Controllers\Admin\UserController::class, 'deleteUser'])->name('admin.delete.user');
     });
