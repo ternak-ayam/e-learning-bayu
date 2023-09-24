@@ -35,8 +35,8 @@ Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 
 Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout')->middleware('auth');
-Route::get('/register', [App\Http\Controllers\Auth\registerController::class, 'index'])->name('user.register');
-Route::post('/register/store', [App\Http\Controllers\Auth\registerController::class, 'register'])->name('user.register.store');
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('user.register');
+Route::post('/register/store', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('user.register.store');
 
 
 Route::get('admin/login', [App\Http\Controllers\Admin\Auth\loginController::class, 'showLoginForm']);
