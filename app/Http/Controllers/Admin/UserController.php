@@ -62,8 +62,12 @@ class UserController extends Controller
             'akhir_ojt' => 'required'
         ]);
 
-        $user = User::findOrFail($id);
-        if($user->update($data)){
+        $user = User::where('id', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => password_hash($request->password, PASSWORD_DEFAULT),
+        ]);
+        if($user){
             Ojt::where('user_id', $id)->update([
                 'sekolah' => $request->sekolah,
                 'pembimbing' => $request->pembimbing,
