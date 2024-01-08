@@ -115,6 +115,9 @@
                                         Author
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Action
                                     </th>
                                 </tr>
@@ -147,8 +150,16 @@
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$quis->author}}
                                     </th>
+                                    <th scope="row"
+                                        class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <div class="flex gap-2 items-center">
+                                            <input id="default-checkbox" disabled {{ App\Models\BuktiQuis::where('quis_id', $quis->id)->where('user_id', auth()->user()->id)->first() ? 'checked' : ''}} type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Selesai</label>   
+                                        </div>
+                                    </th>
                                      <td class="px-6 py-4 flex gap-2 flex-wrap">
-                                        <a href="{{$quis->link}}" target="blank"  class="p-2 rounded bg-blue-400"><i class="fas fa-eye text-white"></i></a>
+                                        <a href="{{$quis->link}}" target="_blank"  class="p-2 rounded bg-blue-400"><i class="fas fa-eye text-white"></i></a>
+                                        <a href="{{route('user.quis.bukti', ['id' => $quis->id])}}" class="p-2 rounded flex gap-2 bg-blue-400 text-white font-semibold"><i class="fas fa-upload"></i><div>Upload bukti</div></a>
                                      </td>
                                 </tr>
                                 @endforeach
@@ -162,5 +173,4 @@
             </div>
         </div>
     </div>
-
 @endsection

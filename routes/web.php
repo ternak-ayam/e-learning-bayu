@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 // guest
 Route::get('/', function () {
-    return redirect()->route('user.login');
+    return redirect()->route('index');
 });
 
 // login register
@@ -29,10 +29,10 @@ Route::get('/register', function () {
 });
 
 // dashboard user
-Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth')->name('index');
 
 
-Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
+Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login')->middleware('guest');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('user.register');
@@ -72,6 +72,7 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
         Route::get('/', [materiController::class, 'index'] );
         Route::get('/filter',[\App\Http\Controllers\User\materiController::class , 'filterMateri'])->name('user.filter.materi');
         Route::get('/download/all/file', [materiController::class, 'downloadAllFile'])->name('download.all.file');
+        Route::get('/download/read/file/{id}/{filename}', [materiController::class, 'readFile'])->name('materi.read.file');
     });
     Route::prefix('quis')->group(function () {
         Route::get('/', [App\Http\Controllers\User\QuisController::class, 'index'])->name('user.quis');
@@ -79,6 +80,8 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
         Route::get('/nama-quis', function () {
             return view('dashboardUser.eLearning.tugas.detailTugas');
         });
+        Route::get('/uploadbukti/{id}',[\App\Http\Controllers\User\QuisController::class , 'uploadBuktiQuis'])->name('user.quis.bukti');
+        Route::post('/save-bukti',[\App\Http\Controllers\User\QuisController::class , 'SaveBuktiQuis'])->name('user.quis.bukti.save');
     });
     Route::prefix('absensi')->group(function () {
         Route::get('/', [App\Http\Controllers\User\AbsensiController::class, 'index'])->name('user.elearning.absensi');
@@ -114,6 +117,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     // });
 
     route::get('daftar/laporan', [App\Http\Controllers\Admin\DashboardController::class, 'laporanUser'])->name('admin.daftar.laporan');
+    route::get('daftar/laporan/nilai/{id}', [App\Http\Controllers\Admin\DashboardController::class, 'nilaiLaporanUser'])->name('admin.daftar.laporan.nilai');
+    route::put('daftar/laporan/nilai/update/{id}', [App\Http\Controllers\Admin\DashboardController::class, 'nilaiLaporanUserUpdate'])->name('admin.daftar.laporan.nilai.update');
+    route::post('daftar/laporan/nilai/simpan', [App\Http\Controllers\Admin\DashboardController::class, 'nilaiLaporanUserSave'])->name('admin.daftar.laporan.nilai.save');
 
     Route::prefix('materi')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\materiController::class , 'index'])->name('admin.materi.index');
@@ -122,6 +128,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('/upload-materi', [\App\Http\Controllers\Admin\materiController::class , 'storeMateri'])->name('admin.store.materi');
         Route::put('/update-materi/{id}', [App\Http\Controllers\Admin\materiController::class, 'updateMateri'])->name('admin.update.materi');
         Route::get('/delete-materi/{id}', [App\Http\Controllers\Admin\materiController::class, 'deleteMateri'])->name('admin.delete.materi');
+
     });
     Route::prefix('quis')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\QuisController::class, 'index'])->name('admin.quis.index');

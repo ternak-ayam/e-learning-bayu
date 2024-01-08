@@ -23,6 +23,10 @@
                                     <th class="px-6 py-3 bg-white dark:bg-white-800">File Submission</th>
                                     <td class="px-6 py-3 bg-gray-100 dark:bg-white-800">{{$laporan ? $laporan->file : '-'}}</td>
                                 </tr>
+                                 <tr>
+                                    <th class="px-6 py-3 bg-white dark:bg-white-800">Nilai</th>
+                                    <td class="px-6 py-3 bg-gray-100 dark:bg-white-800">{{($laporan && $laporan->nilai) ? $laporan->nilai : '-'}}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ class CreateLaporansTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->char('judul');
             $table->char('file');
+            $table->char('nilai')->nullable();
             $table->timestamps();
         });
     }

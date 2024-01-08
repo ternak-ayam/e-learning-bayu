@@ -11,7 +11,8 @@ class Laporan extends Model
     protected $fillable = [
         'id_user',
         'judul',
-        'file'
+        'file',
+        'nilai'
     ];
 
     public function user(){

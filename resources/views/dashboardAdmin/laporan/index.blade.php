@@ -45,7 +45,13 @@
                                         Judul Laporan
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Nilai
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         File
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
@@ -68,12 +74,27 @@
                                         {{$laporan->laporan && $laporan->laporan->judul ? $laporan->laporan->judul : '-'}}
                                     </td>
                                     <td class="px-6 py-4">
+                                        @if ($laporan->laporan && $laporan->laporan->file && $laporan->laporan->nilai)
+                                            {{$laporan->laporan->nilai}}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
                                         @if ($laporan->laporan && $laporan->laporan->file)
                                             <a target="blank" class="bg-green-500 text-white p-2 rounded" href="{{ $laporan->laporan && $laporan->laporan->file ? asset('storage/tugas/' . $laporan->laporan->file) : '#' }}">Cek</a>
                                         @else
                                             -
                                         @endif
-                                        
+                                    </td>
+                                     <td class="px-6 py-4">
+                                        @if ($laporan->laporan && $laporan->laporan->file && $laporan->laporan->nilai)
+                                            <a  class="bg-green-500 text-white p-2 rounded" href="{{route('admin.daftar.laporan.nilai', ['id' => $laporan->laporan->id] )}}">Ubah Nilai</a>
+                                        @elseif($laporan->laporan && $laporan->laporan->file)
+                                            <a  class="bg-green-500 text-white p-2 rounded" href="{{route('admin.daftar.laporan.nilai', ['id' => $laporan->laporan->id])}}">Tambah Nilai</a>
+                                        @else
+                                         -
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

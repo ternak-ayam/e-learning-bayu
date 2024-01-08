@@ -85,7 +85,6 @@ class materiController extends Controller
 
         $materi = Materi::findOrFail($id);
          if(isset($request->file)){
-           
              $file = $request->file;
              $fileName = time() . '_' . \Illuminate\Support\Str::uuid() . '.' . $file->getClientOriginalExtension();
              

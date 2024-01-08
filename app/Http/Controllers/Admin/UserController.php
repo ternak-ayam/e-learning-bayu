@@ -56,11 +56,13 @@ class UserController extends Controller
          $data = $request->validate([
             'name' => 'required',
             'email' => ['required' , Rule::unique('users', 'email')->ignore($id)],
-            'password' => 'required',
             'pembimbing' => 'required',
             'mulai_ojt' => 'required',
             'akhir_ojt' => 'required'
         ]);
+
+        // dd($request->all());
+        $request->password ? $data['password'] = password_hash($request->password,PASSWORD_DEFAULT) : '';
 
         $user = User::findOrFail($id);
         if($user->update($data)){
