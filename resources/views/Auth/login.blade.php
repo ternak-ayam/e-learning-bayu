@@ -20,6 +20,11 @@
                     <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         SISTEM INFORMASI OJT
                     </h1>
+                    @if(session('response'))
+                        <div class="bg-red-300 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <span class="block sm:inline">{{ session('response') }}</span>
+                        </div>
+                    @endif
                     <form class="space-y-4 md:space-y-6" action="{{route('login')}}" method="POST">
                         @csrf
                         <div>
