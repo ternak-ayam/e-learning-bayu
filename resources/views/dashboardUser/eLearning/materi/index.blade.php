@@ -110,14 +110,26 @@ flex-row items-center ml-2">
                         </div>
 
                     </div>
+                    @if(session('response'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <span class="block sm:inline">{{ session('response') }}</span>
+                        </div>
+                    @endif
+
                     @if (!Request::has('fasilitas') && !Request::has('category'))
                     <div class="w-full flex justify-end">
-                        <a href="{{route('download.all.file')}}">
+                        {{-- <a href="{{route('download.all.file')}}">
                             <button
                                 class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i
                                     class="fa-solid fa-folder mr-2"></i>Download
                                 Folder</button>
-                        </a>
+                        </a> --}}
+                            <button onclick="document.getElementById('download-materi').submit()" type="submit"
+                                class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i
+                                    class="fa-solid fa-folder mr-2"></i>Download Materi
+                                Folder
+                            </button>
+
                     </div>
                     @endif
                     <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Daftar Materi</h2>
@@ -151,6 +163,8 @@ flex-row items-center ml-2">
                             </tr>
                         </thead>
                         <tbody>
+                            <form action="{{ route('download.materi') }}" method="post" id="download-materi">
+                                @csrf
                             @foreach ($materis as $materi)
                             <tr
                                 class="border-b {{ in_array($materi->id, $disables) ? 'bg-red-300' : ''}}   dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -181,7 +195,8 @@ flex-row items-center ml-2">
                                 <th scope="row"
                                     class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <div class="flex gap-2 items-center">
-                                        <input id="default-checkbox" type="checkbox"
+                                        <input type="checkbox" class="hidden"  {{optional(App\Models\MateriCheked::where('materi_id',$materi->id)->where('user_id',auth()->user()->id)->first())->checked ? 'checked' : ''}} name="idchecked[]" value="{{$materi->id}}">
+                                        <input id="default-checkbox" type="checkbox"  
                                             {{optional(App\Models\MateriCheked::where('materi_id',$materi->id)->where('user_id',auth()->user()->id)->first())->checked ? 'checked' : ''}}
                                             value=""
                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -201,9 +216,9 @@ flex-row items-center ml-2">
 
                                     @endif
                                 </td>
-
                             </tr>
                             @endforeach
+                            </form>
                         </tbody>
                     </table>
                     <div class="flex w-full mt-2 justify-end">

@@ -121,15 +121,46 @@ class materiController extends Controller
         }
     }
 
+    public function downloadMateri(Request $request){
+        if($request->idchecked){
+            $files = Materi::whereIn('id',$request->idchecked)->get();
+            $zipFileName = 'materi.zip';
+            $zipPath = storage_path($zipFileName);
+
+            $zip = new ZipArchive();
+
+            if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+                foreach ($files as $file) {
+                    $filePath = storage_path('public/materi/' . $file->file);
+                    $fileContents = Storage::disk('public/materi')->get($file->file);
+                    $zip->addFromString(basename($file->file), $fileContents);
+                }
+            $zip->close();
+            return response()->download($zipPath)->deleteFileAfterSend(true);
+        } else {
+            abort(500);
+        }
+            
+        }else{
+            return back()->with('response', 'belum ada materi yang di selesaikan');
+        }
+      
+    }
+
     public function readFile($id,$filename){
-        MateriCheked::create([
-            'materi_id' => $id,
-            'user_id' => auth()->user()->id,
-            'checked' => true
-        ]);
-
+        $materi = MateriCheked::where('materi_id', $id)->where('user_id', auth()->user()->id)->first();
+        
         $fileUrl = asset('storage/materi/' .  $filename);
-
-        return redirect()->away($fileUrl);
+        if($materi){
+         return redirect()->away($fileUrl);
+        }else
+        {
+            MateriCheked::create([
+                'materi_id' => $id,
+                'user_id' => auth()->user()->id,
+                'checked' => true
+            ]);
+            return redirect()->away($fileUrl);
+        }
     }
 }

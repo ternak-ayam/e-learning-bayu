@@ -13,7 +13,9 @@ class Ojt extends Model
         'pembimbing',
         'sekolah',
         'mulai_ojt',
-        'akhir_ojt'
+        'akhir_ojt',
+        'status',
+        'surat_ojt'
     ];
 
     public function user()

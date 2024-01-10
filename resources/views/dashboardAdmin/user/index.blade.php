@@ -55,6 +55,18 @@
                                         Akhir Ojt
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Surat Penerimaan
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Progres Materi
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Progres Quis
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Action
                                     </th>
                                 </tr>
@@ -83,9 +95,30 @@
                                     <td class="px-6 py-4">
                                        {{$user->ojt->akhir_ojt}}
                                     </td>
+                                    <td class="px-6 py-4">
+                                       {{$user->ojt->status ? 'aktif' : 'tidak aktif'}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{asset('storage/materi/' .  $user->ojt->surat_ojt)}}" target="blank"  class="p-2 rounded bg-blue-400"><i class="fas fa-eye text-white"></i></a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-1">
+                                            <progress style="background-color: blue" id="file" class="rounded bg-blue-400" value="{{ $user->materiChecked()->count() }}" max="{{App\Models\Materi::all()->count()}}"></progress>
+                                            <div>{{($user->materiChecked()->count()/App\Models\Materi::all()->count()) * 100}}%</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                       <div class="flex gap-1">
+                                            <progress style="background-color: blue" id="file" class="rounded bg-blue-400" value="{{ $user->quisChecked()->count() }}" max="{{App\Models\Quis::all()->count()}}"></progress>
+                                            <div>{{($user->quisChecked()->count()/App\Models\Quis::all()->count()) * 100}}%</div>
+                                        </div>
+                                    </td>
                                      <td class="px-6 py-4 flex gap-2 flex-wrap">
                                         <a href="{{route('admin.view.add.user', ['id' => $user->id])}}" class="p-2 rounded bg-green-400"><i class="fa-solid fa-pen text-white"></i></a>
                                         <a href="{{route('admin.delete.user' , ['id' => $user->id])}}" class="p-2 rounded bg-red-400"><i class="fas fa-trash text-white"></i></a>
+                                        @if (!$user->ojt->status)
+                                            <a href="{{route('admin.validasi.user' , ['id' => $user->id])}}" class="p-2 rounded bg-blue-400">Validasi</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

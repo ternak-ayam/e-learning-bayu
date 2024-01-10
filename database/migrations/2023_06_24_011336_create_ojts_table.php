@@ -21,6 +21,8 @@ class CreateOjtsTable extends Migration
             $table->char('pembimbing');
             $table->char('mulai_ojt');
             $table->char('akhir_ojt');
+            $table->char('surat_ojt');
+            $table->boolean('status')->default(false);
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')

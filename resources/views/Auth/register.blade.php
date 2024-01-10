@@ -32,7 +32,7 @@
                     <h5 class="mb-2 ml-2 md:text-start text-center  text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         Register User</h5>
                     <div class="p-4">
-                        <form   method="POST" action="{{route('user.register.store')}}" >
+                        <form   method="POST" action="{{route('user.register.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-6">
                                 <label for="namaLengkap"
@@ -118,12 +118,30 @@
                                 </span>
                             @enderror
                             </div>
+                             <div class="mt-6">
+                                <label for=""
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Surat Penerimaan</label>
+                                <input type="file"  id="" name="file" 
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                     required>
+                            @error('file')
+                                <span class="text-red-700 text-sm" style="color:red">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            </div>
+                            </div>
                              </div>
-                             <div class="lg:px-48 flex gap-2 justify-center">
+                              <div class="lg:px-48 flex gap-2 justify-center items-center">
+                                <div>
+                                    <a  href="{{route('user.login')}}"
+                                    class="text-white bg-red-700  hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cancel</a>
+                                </div>
                                 <div>
                                     <button type="submit"
                                 class="text-white bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Sign Up</button>
-                                </div>               
+                                </div>  
+                                                    
                             
                              </div>
                         </form>

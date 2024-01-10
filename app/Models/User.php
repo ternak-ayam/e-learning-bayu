@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -68,5 +69,18 @@ class User extends Authenticatable
 
     public function absensi(){
         return $this->hasMany('App\Models\Absensi' , 'id_user');
+    }
+
+    // public function materiChecked(){
+    //     return $this->belongsToMany(MateriCheked::class, 'materi_chekeds', 'materi_id', 'user_id');
+    // }
+public function materiChecked()
+{
+    return $this->belongsToMany(Materi::class, 'materi_chekeds', 'user_id', 'materi_id')
+        ->withPivot('id'); // Add pivot columns if needed
+}
+
+    public function quisChecked(){
+        return $this->belongsToMany(Quis::class,'bukti_quis', 'user_id', 'quis_id');
     }
 }

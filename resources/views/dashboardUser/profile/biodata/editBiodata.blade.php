@@ -21,8 +21,8 @@
                         <p class="font-normal text-gray-700 dark:text-gray-400">Telepon</p>
                         <h5 class="mb-10 text-md font-semibold tracking-tight text-gray-900 dark:text-white"> {{$user->phone ? '0' . $user->phone : '-'}}</h5>
                         </h5>
-                        <p class="font-normal text-gray-700 dark:text-gray-400">Alamat</p>
-                        <h5 class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">{{$user->alamat ? $user->alamat : '-'}}
+                        {{-- <p class="font-normal text-gray-700 dark:text-gray-400">Alamat</p>
+                        <h5 class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">{{$user->alamat ? $user->alamat : '-'}} --}}
                         </h5>
                     </div>
                 </div>

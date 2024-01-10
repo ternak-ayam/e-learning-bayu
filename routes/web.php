@@ -72,6 +72,7 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
         Route::get('/', [materiController::class, 'index'] );
         Route::get('/filter',[\App\Http\Controllers\User\materiController::class , 'filterMateri'])->name('user.filter.materi');
         Route::get('/download/all/file', [materiController::class, 'downloadAllFile'])->name('download.all.file');
+        Route::post('/download', [materiController::class, 'downloadMateri'])->name('download.materi');
         Route::get('/download/read/file/{id}/{filename}', [materiController::class, 'readFile'])->name('materi.read.file');
     });
     Route::prefix('quis')->group(function () {
@@ -145,5 +146,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         // Route::post('/addUser', [App\Http\Controllers\Admin\UserController::class, 'addUser'])->name('admin.add.user');
         Route::put('/updateUser/{id}', [App\Http\Controllers\Admin\UserController::class, 'updateUser'])->name('admin.update.user');
         Route::get('/delete-user/{id}', [App\Http\Controllers\Admin\UserController::class, 'deleteUser'])->name('admin.delete.user');
+        Route::get('/validasi-user/{id}', [App\Http\Controllers\Admin\UserController::class, 'validasiUser'])->name('admin.validasi.user');
+
     });
 });

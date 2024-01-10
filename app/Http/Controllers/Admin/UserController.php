@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(){
         return view('dashboardAdmin.user.index',
-        ['users' => User::where('name', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->paginate(5)]);
+        ['users' => User::where('name', 'like', '%' . \request()->get('query') . '%')->with('materiChecked')->orderby('id', 'DESC')->paginate(5)]);
     }
 
 
@@ -80,5 +80,13 @@ class UserController extends Controller
     public function deleteUser($id){
         User::where('id', $id)->delete();
         return redirect()->route('admin.user.index');
+    }
+
+    public function validasiUser($id){
+        Ojt::where('user_id',$id)->update([
+            'status' => true
+        ]);
+
+        return back();
     }
 }

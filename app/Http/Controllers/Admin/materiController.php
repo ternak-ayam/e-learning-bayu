@@ -13,7 +13,7 @@ class materiController extends Controller
 {
     public function index(){
         return view('dashboardAdmin.materi.index' , [
-            'materis' => Materi::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'DESC')->paginate(10),
+            'materis' => Materi::where('deskripsi', 'like', '%' . \request()->get('query') . '%')->orderby('id', 'ASC')->paginate(10),
             'categorys' => Category::all(),
             'fasilitass' => Fasilitas::all()
         ]);
@@ -60,7 +60,7 @@ class materiController extends Controller
             'file' => 'required|mimes:pdf,docx,ppt,jpg,jpeg,png',
         ]);
         $file = $request->file;
-        $fileName = time() . '_' . \Illuminate\Support\Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $fileName = time() . '_' . str_replace(' ', '_', $request->deskripsi) . '.' . $file->getClientOriginalExtension();
   
         if($this->uploadFile($request,$fileName,$file)){
             Materi::create([
@@ -86,7 +86,7 @@ class materiController extends Controller
         $materi = Materi::findOrFail($id);
          if(isset($request->file)){
              $file = $request->file;
-             $fileName = time() . '_' . \Illuminate\Support\Str::uuid() . '.' . $file->getClientOriginalExtension();
+             $fileName = time() . '_' . str_replace(' ', '_', $request->deskripsi)  . '.' . $file->getClientOriginalExtension();
              
             if($this->updateFile($request,$fileName,$materi)){
                 // dd($request->file);
