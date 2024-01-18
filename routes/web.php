@@ -32,7 +32,7 @@ Route::get('/register', function () {
 Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->middleware('auth')->name('index');
 
 
-Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login')->middleware('guest');
+Route::get('/login', [App\Http\Controllers\Auth\loginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/login', [App\Http\Controllers\Auth\loginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Auth\loginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('user.register');
@@ -95,11 +95,12 @@ Route::prefix('elearning')->middleware('auth')->group(function () {
 
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::post('/logout', [App\Http\Controllers\Admin\Auth\loginController::class, 'logout'])->name('logout.admin');
     Route::prefix('dashboard-admin')->group(function () {
         // Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
-        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
+        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
     });
-    Route::post('/logout', [App\Http\Controllers\Admin\Auth\loginController::class, 'logout'])->name('logout.admin');
+   
     // Route::prefix('absensi')->group(function () {
     //     Route::get('/', [\App\Http\Controllers\Admin\absensiController::class, 'index'])->name('admin.absensi.index');
     //     Route::post('/add-pertemuan', [\App\Http\Controllers\Admin\absensiController::class, 'addPertemuan'])->name('admin.add.absensi');

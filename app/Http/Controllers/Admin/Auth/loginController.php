@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class loginController extends Controller
@@ -35,6 +36,20 @@ class loginController extends Controller
     protected function guard()
     {
         return Auth::guard('admin');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        // dd($credentials);
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            // Authentication passed...
+            //  dd($credentials);
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->back()->with('error', 'username atau password tidak sesuai');
     }
 
     public function username()
