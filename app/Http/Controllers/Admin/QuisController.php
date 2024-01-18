@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\BuktiQuis;
 use App\Models\Category;
 use App\Models\Fasilitas;
 use App\Models\Quis;
+use App\Models\QuisChecked;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +19,13 @@ class QuisController extends Controller
             'categorys' => Category::all(),
             'fasilitass' => Fasilitas::all()
          ]);
+    }
+
+    public function pesertaQuis($id){
+        $quis = Quis::where('id',$id)->first();
+        $pesertas = BuktiQuis::where('quis_id',$id)->with('user')->paginate(10);
+        // dd($pesertas);
+        return view('dashboardAdmin.quis.peserta-quis', compact('pesertas','quis'));
     }
 
     public function filterQuis(Request $request){

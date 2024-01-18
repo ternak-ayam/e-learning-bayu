@@ -93,6 +93,9 @@
                                         Author
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Peserta
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Action
                                     </th>
                                 </tr>
@@ -124,6 +127,10 @@
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$quis->author}}
+                                    </th>
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a href="{{route('admin.list-peserta.quis', ['id' => $quis->id])}}"   class="p-2 rounded bg-blue-400"><i class="fas fa-eye text-white"></i></a>
                                     </th>
                                      <td class="px-6 py-4 flex gap-2 flex-wrap">
                                         <a href="{{route('admin.view.add.quis', ['id' => $quis->id])}}"   class="p-2 rounded bg-green-400"><i class="fa-solid fa-pen text-white"></i></a>

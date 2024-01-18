@@ -74,11 +74,11 @@ class User extends Authenticatable
     // public function materiChecked(){
     //     return $this->belongsToMany(MateriCheked::class, 'materi_chekeds', 'materi_id', 'user_id');
     // }
-public function materiChecked()
-{
-    return $this->belongsToMany(Materi::class, 'materi_chekeds', 'user_id', 'materi_id')
-        ->withPivot('id'); // Add pivot columns if needed
-}
+    public function materiChecked()
+    {
+        return $this->belongsToMany(Materi::class, 'materi_chekeds', 'user_id', 'materi_id')
+            ->withPivot('id'); // Add pivot columns if needed
+    }
 
     public function quisChecked(){
         return $this->belongsToMany(Quis::class,'bukti_quis', 'user_id', 'quis_id');

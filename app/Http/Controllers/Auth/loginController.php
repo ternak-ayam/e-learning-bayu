@@ -36,9 +36,15 @@ class loginController extends Controller
     {
         $user = User::where('email',$request->email)->first();
 
-        if(!$user->ojt->status){
+        if($user){
+            if(!$user->ojt->status){
             return back()->with('response', 'Data Belum di validasi oleh admin');
+            }
+        }else{
+             return back()->with('response', 'username or password is not available');
         }
+
+       
 
         $this->validateLogin($request);
         if (method_exists($this, 'hasTooManyLoginAttempts') &&

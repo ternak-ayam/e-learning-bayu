@@ -139,6 +139,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('/upload-quis', [App\Http\Controllers\Admin\QuisController::class, 'uploadQuis'])->name('admin.upload.quis');
         Route::put('/update-quis/{id}', [App\Http\Controllers\Admin\QuisController::class, 'updateQuis'])->name('admin.update.quis');
         Route::get('/delete-quis/{id}', [App\Http\Controllers\Admin\QuisController::class, 'deleteQuis'])->name('admin.delete.quis');
+        Route::get('/peserta-quis/{id}', [App\Http\Controllers\Admin\QuisController::class, 'pesertaQuis'])->name('admin.list-peserta.quis');
     });
 
     Route::prefix('user')->group(function () {
